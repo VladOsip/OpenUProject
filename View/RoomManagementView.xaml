@@ -1,0 +1,83 @@
+﻿<UserControl x:Class="MySchoolYear.View.RoomManagementView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MySchoolYear.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="560" d:DesignWidth="650"
+             Background = "{StaticResource WindowBackgroundBrush}">
+    <DockPanel>
+        <TextBlock DockPanel.Dock="Top" HorizontalAlignment="Center" Text="{Binding ScreenName}" Style="{StaticResource MainTitleText}"/>
+
+        <DataGrid DockPanel.Dock="Right" ItemsSource="{Binding Path=RoomsTableData}" SelectionMode="Single" SelectedItem="{Binding Path=SelectedRoom}"
+                  ScrollViewer.HorizontalScrollBarVisibility="Hidden" AutoGenerateColumns="False" IsReadOnly="True" FlowDirection="RightToLeft"
+                  VerticalAlignment="Top" HorizontalContentAlignment="Center" RowHeaderWidth ="0" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="שם החדר" Binding="{Binding Path=Name}" Width="70" HeaderStyle="{StaticResource ColumnHeaderMainStyle}"/>
+                <DataGridTextColumn Header="כיתת אם" Binding="{Binding Path=HomeroomClassName}" Width="70" HeaderStyle="{StaticResource ColumnHeaderMainStyle}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <StackPanel DockPanel.Dock="Left">
+            <Grid Margin="50,20,0,0" Width="400" >
+                <Grid.Resources >
+                    <Style TargetType="Border" >
+                        <Setter Property="Padding" Value="0,10" />
+                    </Style>
+                </Grid.Resources>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Border Grid.Row="0" Grid.Column="0">
+                    <TextBlock  Text="שם חדר:" Style="{StaticResource BasicText}"/>
+                </Border>
+                <Border Grid.Row="0" Grid.Column="1">
+                    <TextBox Text="{Binding Path=RoomName, Mode=TwoWay}" />
+                </Border>
+
+                <Border Grid.Row="1" Grid.Column="0">
+                    <TextBlock Text="כיתה המשויכת לחדר:" Style="{StaticResource BasicText}"/>
+                </Border>
+                <Border Grid.Row="1" Grid.Column="1" >
+                    <ComboBox ItemsSource="{Binding Path=AvailableClasses, Mode=TwoWay}"
+                              SelectedValuePath="Key" DisplayMemberPath="Value" SelectedValue="{Binding Path=SelectedClass, Mode=TwoWay}"/>
+                </Border>
+
+                <Border Grid.Row="2" Grid.Column="0">
+                    <Button Content="מחק" Background="{StaticResource DangerousActionColorBrush}" Command="{Binding DeleteRoomCommand}" />
+                </Border>
+                <Border Grid.Row="2" Grid.Column="1" >
+                    <Button Content="עדכן" Command="{Binding UpdateRoomCommand}"/>
+                </Border>
+            </Grid>
+
+            <Button Content="צור חדר חדש" Command="{Binding CreateNewRoomCommand}" Margin="50,20,0,0"/>
+            <Separator BorderThickness="2" BorderBrush="Gray" Margin="0,20,0,2"/>
+
+            <TextBlock Text="שיעורים בחדר המסומן:" Style="{StaticResource SecondaryTitleText}" HorizontalAlignment="Center"/>
+            <DataGrid ItemsSource="{Binding LessonsInSelectedRoom}" AutoGenerateColumns="False" IsReadOnly="True"
+                      VerticalAlignment="Top" HorizontalAlignment="Center" RowHeaderWidth ="0" FlowDirection="RightToLeft">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="כיתה" Binding="{Binding ClassName}" HeaderStyle="{StaticResource ColumnHeaderMainStyle}"/>
+                    <DataGridTextColumn Header="מקצוע" Binding="{Binding CourseName}" HeaderStyle="{StaticResource ColumnHeaderMainStyle}"/>
+                    <DataGridTextColumn Header="יום" Binding="{Binding DayFirstLesson}" HeaderStyle="{StaticResource ColumnHeaderMainStyle}" CanUserSort="False"/>
+                    <DataGridTextColumn Header="שעה" Binding="{Binding HourFirstLesson}" HeaderStyle="{StaticResource ColumnHeaderMainStyle}" CanUserSort="False"/>
+                    <DataGridTextColumn Header="יום" Binding="{Binding DaySecondLesson}" HeaderStyle="{StaticResource ColumnHeaderMainStyle}" CanUserSort="False"/>
+                    <DataGridTextColumn Header="שעה" Binding="{Binding HourSecondLesson}" HeaderStyle="{StaticResource ColumnHeaderMainStyle}" CanUserSort="False"/>
+                    <DataGridTextColumn Header="יום" Binding="{Binding DayThirdLesson}" HeaderStyle="{StaticResource ColumnHeaderMainStyle}" CanUserSort="False"/>
+                    <DataGridTextColumn Header="שעה" Binding="{Binding HourThirdLesson}" HeaderStyle="{StaticResource ColumnHeaderMainStyle}" CanUserSort="False"/>
+                    <DataGridTextColumn Header="יום" Binding="{Binding DayFourthLesson}" HeaderStyle="{StaticResource ColumnHeaderMainStyle}" CanUserSort="False"/>
+                    <DataGridTextColumn Header="שעה" Binding="{Binding HourFourthLesson}" HeaderStyle="{StaticResource ColumnHeaderMainStyle}" CanUserSort="False"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+    </DockPanel>
+</UserControl>

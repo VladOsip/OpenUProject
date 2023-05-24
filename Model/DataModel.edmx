@@ -1,0 +1,1301 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="schoolModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Classes">
+          <Key>
+            <PropertyRef Name="classID" />
+          </Key>
+          <Property Name="classID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="roomID" Type="int" />
+          <Property Name="className" Type="nvarchar" MaxLength="16" />
+        </EntityType>
+        <EntityType Name="Courses">
+          <Key>
+            <PropertyRef Name="courseID" />
+          </Key>
+          <Property Name="courseID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="courseName" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="isHomeroomTeacherOnly" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Events">
+          <Key>
+            <PropertyRef Name="eventID" />
+          </Key>
+          <Property Name="eventID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="submitterID" Type="int" Nullable="false" />
+          <Property Name="recipientID" Type="int" />
+          <Property Name="recipientClassID" Type="int" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="description" Type="nvarchar" MaxLength="250" />
+          <Property Name="location" Type="nvarchar" MaxLength="50" />
+          <Property Name="eventDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Grades">
+          <Key>
+            <PropertyRef Name="studentID" />
+            <PropertyRef Name="courseID" />
+          </Key>
+          <Property Name="studentID" Type="int" Nullable="false" />
+          <Property Name="courseID" Type="int" Nullable="false" />
+          <Property Name="teacherID" Type="int" Nullable="false" />
+          <Property Name="score" Type="tinyint" Nullable="false" />
+          <Property Name="notes" Type="nvarchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="Lessons">
+          <Key>
+            <PropertyRef Name="lessonID" />
+          </Key>
+          <Property Name="lessonID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="teacherID" Type="int" Nullable="false" />
+          <Property Name="courseID" Type="int" Nullable="false" />
+          <Property Name="classID" Type="int" Nullable="false" />
+          <Property Name="roomID" Type="int" />
+          <Property Name="firstLessonDay" Type="tinyint" Nullable="false" />
+          <Property Name="firstLessonHour" Type="tinyint" Nullable="false" />
+          <Property Name="secondLessonDay" Type="tinyint" />
+          <Property Name="secondLessonHour" Type="tinyint" />
+          <Property Name="thirdLessonDay" Type="tinyint" />
+          <Property Name="thirdLessonHour" Type="tinyint" />
+          <Property Name="fourthLessonDay" Type="tinyint" />
+          <Property Name="fourthLessonHour" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="Messages">
+          <Key>
+            <PropertyRef Name="messageID" />
+          </Key>
+          <Property Name="messageID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="senderID" Type="int" />
+          <Property Name="recipientID" Type="int" />
+          <Property Name="recipientClassID" Type="int" />
+          <Property Name="forAllManagement" Type="bit" Nullable="false" />
+          <Property Name="forAllTeachers" Type="bit" Nullable="false" />
+          <Property Name="forAllStudents" Type="bit" Nullable="false" />
+          <Property Name="forEveryone" Type="bit" Nullable="false" />
+          <Property Name="title" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="data" Type="nvarchar" MaxLength="350" Nullable="false" />
+          <Property Name="date" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Persons">
+          <Key>
+            <PropertyRef Name="personID" />
+          </Key>
+          <Property Name="personID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="userID" Type="int" Nullable="false" />
+          <Property Name="firstName" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="lastName" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="email" Type="nvarchar" MaxLength="50" />
+          <Property Name="phoneNumber" Type="char" MaxLength="12" Nullable="false" />
+          <Property Name="birthdate" Type="date" />
+          <Property Name="isStudent" Type="bit" Nullable="false" />
+          <Property Name="isTeacher" Type="bit" Nullable="false" />
+          <Property Name="isSecretary" Type="bit" Nullable="false" />
+          <Property Name="isPrincipal" Type="bit" Nullable="false" />
+          <Property Name="isParent" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Rooms">
+          <Key>
+            <PropertyRef Name="roomID" />
+          </Key>
+          <Property Name="roomID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="roomName" Type="nvarchar" MaxLength="16" />
+        </EntityType>
+        <EntityType Name="SchoolInfo">
+          <Key>
+            <PropertyRef Name="key" />
+          </Key>
+          <Property Name="key" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="value" Type="nvarchar" MaxLength="250" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Students">
+          <Key>
+            <PropertyRef Name="studentID" />
+          </Key>
+          <Property Name="studentID" Type="int" Nullable="false" />
+          <Property Name="classID" Type="int" />
+          <Property Name="absencesCounter" Type="int" Nullable="false" />
+          <Property Name="parentID" Type="int" />
+        </EntityType>
+        <EntityType Name="Teachers">
+          <Key>
+            <PropertyRef Name="teacherID" />
+          </Key>
+          <Property Name="teacherID" Type="int" Nullable="false" />
+          <Property Name="classID" Type="int" />
+          <Property Name="firstCourseID" Type="int" />
+          <Property Name="secondCourseID" Type="int" />
+          <Property Name="thirdCourseID" Type="int" />
+          <Property Name="fourthCourseID" Type="int" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="userID" />
+          </Key>
+          <Property Name="userID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="username" Type="nvarchar" MaxLength="16" Nullable="false" />
+          <Property Name="password" Type="nvarchar" MaxLength="16" Nullable="false" />
+          <Property Name="isDisabled" Type="bit" Nullable="false" />
+          <Property Name="hasToChangePassword" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Classrooms_ToRooms">
+          <End Role="Rooms" Type="Self.Rooms" Multiplicity="0..1" />
+          <End Role="Classes" Type="Self.Classes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rooms">
+              <PropertyRef Name="roomID" />
+            </Principal>
+            <Dependent Role="Classes">
+              <PropertyRef Name="roomID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Events_ToClasses">
+          <End Role="Classes" Type="Self.Classes" Multiplicity="0..1" />
+          <End Role="Events" Type="Self.Events" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Classes">
+              <PropertyRef Name="classID" />
+            </Principal>
+            <Dependent Role="Events">
+              <PropertyRef Name="recipientClassID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Events_ToPersons">
+          <End Role="Persons" Type="Self.Persons" Multiplicity="1" />
+          <End Role="Events" Type="Self.Events" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persons">
+              <PropertyRef Name="personID" />
+            </Principal>
+            <Dependent Role="Events">
+              <PropertyRef Name="submitterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Events_ToRecipientPersons">
+          <End Role="Persons" Type="Self.Persons" Multiplicity="0..1" />
+          <End Role="Events" Type="Self.Events" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persons">
+              <PropertyRef Name="personID" />
+            </Principal>
+            <Dependent Role="Events">
+              <PropertyRef Name="recipientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Grades_ToTeachers">
+          <End Role="Teachers" Type="Self.Teachers" Multiplicity="1" />
+          <End Role="Grades" Type="Self.Grades" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teachers">
+              <PropertyRef Name="teacherID" />
+            </Principal>
+            <Dependent Role="Grades">
+              <PropertyRef Name="teacherID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Lessons_ToClasses">
+          <End Role="Classes" Type="Self.Classes" Multiplicity="1" />
+          <End Role="Lessons" Type="Self.Lessons" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Classes">
+              <PropertyRef Name="classID" />
+            </Principal>
+            <Dependent Role="Lessons">
+              <PropertyRef Name="classID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Lessons_ToCourses">
+          <End Role="Courses" Type="Self.Courses" Multiplicity="1" />
+          <End Role="Lessons" Type="Self.Lessons" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Courses">
+              <PropertyRef Name="courseID" />
+            </Principal>
+            <Dependent Role="Lessons">
+              <PropertyRef Name="courseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Lessons_ToRooms">
+          <End Role="Rooms" Type="Self.Rooms" Multiplicity="0..1" />
+          <End Role="Lessons" Type="Self.Lessons" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rooms">
+              <PropertyRef Name="roomID" />
+            </Principal>
+            <Dependent Role="Lessons">
+              <PropertyRef Name="roomID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Lessons_ToTeachers">
+          <End Role="Teachers" Type="Self.Teachers" Multiplicity="1" />
+          <End Role="Lessons" Type="Self.Lessons" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teachers">
+              <PropertyRef Name="teacherID" />
+            </Principal>
+            <Dependent Role="Lessons">
+              <PropertyRef Name="teacherID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Messages_ToClasses">
+          <End Role="Classes" Type="Self.Classes" Multiplicity="0..1" />
+          <End Role="Messages" Type="Self.Messages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Classes">
+              <PropertyRef Name="classID" />
+            </Principal>
+            <Dependent Role="Messages">
+              <PropertyRef Name="recipientClassID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Messages_ToPersons">
+          <End Role="Persons" Type="Self.Persons" Multiplicity="0..1" />
+          <End Role="Messages" Type="Self.Messages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persons">
+              <PropertyRef Name="personID" />
+            </Principal>
+            <Dependent Role="Messages">
+              <PropertyRef Name="senderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Messages_ToPersonsRecipient">
+          <End Role="Persons" Type="Self.Persons" Multiplicity="0..1" />
+          <End Role="Messages" Type="Self.Messages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persons">
+              <PropertyRef Name="personID" />
+            </Principal>
+            <Dependent Role="Messages">
+              <PropertyRef Name="recipientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Persons_ToUsers">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Persons" Type="Self.Persons" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="userID" />
+            </Principal>
+            <Dependent Role="Persons">
+              <PropertyRef Name="userID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Scores_ToCourses">
+          <End Role="Courses" Type="Self.Courses" Multiplicity="1" />
+          <End Role="Grades" Type="Self.Grades" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Courses">
+              <PropertyRef Name="courseID" />
+            </Principal>
+            <Dependent Role="Grades">
+              <PropertyRef Name="courseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Scores_ToStudents">
+          <End Role="Students" Type="Self.Students" Multiplicity="1" />
+          <End Role="Grades" Type="Self.Grades" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Students">
+              <PropertyRef Name="studentID" />
+            </Principal>
+            <Dependent Role="Grades">
+              <PropertyRef Name="studentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Students_ToClasses">
+          <End Role="Classes" Type="Self.Classes" Multiplicity="0..1" />
+          <End Role="Students" Type="Self.Students" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Classes">
+              <PropertyRef Name="classID" />
+            </Principal>
+            <Dependent Role="Students">
+              <PropertyRef Name="classID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Students_ToParentPersons">
+          <End Role="Persons" Type="Self.Persons" Multiplicity="0..1" />
+          <End Role="Students" Type="Self.Students" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persons">
+              <PropertyRef Name="personID" />
+            </Principal>
+            <Dependent Role="Students">
+              <PropertyRef Name="parentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Students_ToPersons">
+          <End Role="Persons" Type="Self.Persons" Multiplicity="1" />
+          <End Role="Students" Type="Self.Students" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Persons">
+              <PropertyRef Name="personID" />
+            </Principal>
+            <Dependent Role="Students">
+              <PropertyRef Name="studentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Teachers_ToClasses">
+          <End Role="Classes" Type="Self.Classes" Multiplicity="0..1" />
+          <End Role="Teachers" Type="Self.Teachers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Classes">
+              <PropertyRef Name="classID" />
+            </Principal>
+            <Dependent Role="Teachers">
+              <PropertyRef Name="classID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Teachers_ToCourses_1">
+          <End Role="Courses" Type="Self.Courses" Multiplicity="0..1" />
+          <End Role="Teachers" Type="Self.Teachers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Courses">
+              <PropertyRef Name="courseID" />
+            </Principal>
+            <Dependent Role="Teachers">
+              <PropertyRef Name="firstCourseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Teachers_ToCourses_2">
+          <End Role="Courses" Type="Self.Courses" Multiplicity="0..1" />
+          <End Role="Teachers" Type="Self.Teachers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Courses">
+              <PropertyRef Name="courseID" />
+            </Principal>
+            <Dependent Role="Teachers">
+              <PropertyRef Name="secondCourseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Teachers_ToCourses_3">
+          <End Role="Courses" Type="Self.Courses" Multiplicity="0..1" />
+          <End Role="Teachers" Type="Self.Teachers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Courses">
+              <PropertyRef Name="courseID" />
+            </Principal>
+            <Dependent Role="Teachers">
+              <PropertyRef Name="thirdCourseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Teachers_ToCourses_4">
+          <End Role="Courses" Type="Self.Courses" Multiplicity="0..1" />
+          <End Role="Teachers" Type="Self.Teachers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Courses">
+              <PropertyRef Name="courseID" />
+            </Principal>
+            <Dependent Role="Teachers">
+              <PropertyRef Name="fourthCourseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Teachers_ToPersons">
+          <End Role="Persons" Type="Self.Persons" Multiplicity="1" />
+          <End Role="Teachers" Type="Self.Teachers" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Persons">
+              <PropertyRef Name="personID" />
+            </Principal>
+            <Dependent Role="Teachers">
+              <PropertyRef Name="teacherID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="schoolModelStoreContainer">
+          <EntitySet Name="Classes" EntityType="Self.Classes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Courses" EntityType="Self.Courses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Events" EntityType="Self.Events" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Grades" EntityType="Self.Grades" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Lessons" EntityType="Self.Lessons" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Messages" EntityType="Self.Messages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Persons" EntityType="Self.Persons" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rooms" EntityType="Self.Rooms" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SchoolInfo" EntityType="Self.SchoolInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Students" EntityType="Self.Students" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Teachers" EntityType="Self.Teachers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Classrooms_ToRooms" Association="Self.FK_Classrooms_ToRooms">
+            <End Role="Rooms" EntitySet="Rooms" />
+            <End Role="Classes" EntitySet="Classes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Events_ToClasses" Association="Self.FK_Events_ToClasses">
+            <End Role="Classes" EntitySet="Classes" />
+            <End Role="Events" EntitySet="Events" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Events_ToPersons" Association="Self.FK_Events_ToPersons">
+            <End Role="Persons" EntitySet="Persons" />
+            <End Role="Events" EntitySet="Events" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Events_ToRecipientPersons" Association="Self.FK_Events_ToRecipientPersons">
+            <End Role="Persons" EntitySet="Persons" />
+            <End Role="Events" EntitySet="Events" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Grades_ToTeachers" Association="Self.FK_Grades_ToTeachers">
+            <End Role="Teachers" EntitySet="Teachers" />
+            <End Role="Grades" EntitySet="Grades" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Lessons_ToClasses" Association="Self.FK_Lessons_ToClasses">
+            <End Role="Classes" EntitySet="Classes" />
+            <End Role="Lessons" EntitySet="Lessons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Lessons_ToCourses" Association="Self.FK_Lessons_ToCourses">
+            <End Role="Courses" EntitySet="Courses" />
+            <End Role="Lessons" EntitySet="Lessons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Lessons_ToRooms" Association="Self.FK_Lessons_ToRooms">
+            <End Role="Rooms" EntitySet="Rooms" />
+            <End Role="Lessons" EntitySet="Lessons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Lessons_ToTeachers" Association="Self.FK_Lessons_ToTeachers">
+            <End Role="Teachers" EntitySet="Teachers" />
+            <End Role="Lessons" EntitySet="Lessons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Messages_ToClasses" Association="Self.FK_Messages_ToClasses">
+            <End Role="Classes" EntitySet="Classes" />
+            <End Role="Messages" EntitySet="Messages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Messages_ToPersons" Association="Self.FK_Messages_ToPersons">
+            <End Role="Persons" EntitySet="Persons" />
+            <End Role="Messages" EntitySet="Messages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Messages_ToPersonsRecipient" Association="Self.FK_Messages_ToPersonsRecipient">
+            <End Role="Persons" EntitySet="Persons" />
+            <End Role="Messages" EntitySet="Messages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Persons_ToUsers" Association="Self.FK_Persons_ToUsers">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Persons" EntitySet="Persons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Scores_ToCourses" Association="Self.FK_Scores_ToCourses">
+            <End Role="Courses" EntitySet="Courses" />
+            <End Role="Grades" EntitySet="Grades" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Scores_ToStudents" Association="Self.FK_Scores_ToStudents">
+            <End Role="Students" EntitySet="Students" />
+            <End Role="Grades" EntitySet="Grades" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Students_ToClasses" Association="Self.FK_Students_ToClasses">
+            <End Role="Classes" EntitySet="Classes" />
+            <End Role="Students" EntitySet="Students" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Students_ToParentPersons" Association="Self.FK_Students_ToParentPersons">
+            <End Role="Persons" EntitySet="Persons" />
+            <End Role="Students" EntitySet="Students" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Students_ToPersons" Association="Self.FK_Students_ToPersons">
+            <End Role="Persons" EntitySet="Persons" />
+            <End Role="Students" EntitySet="Students" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Teachers_ToClasses" Association="Self.FK_Teachers_ToClasses">
+            <End Role="Classes" EntitySet="Classes" />
+            <End Role="Teachers" EntitySet="Teachers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Teachers_ToCourses_1" Association="Self.FK_Teachers_ToCourses_1">
+            <End Role="Courses" EntitySet="Courses" />
+            <End Role="Teachers" EntitySet="Teachers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Teachers_ToCourses_2" Association="Self.FK_Teachers_ToCourses_2">
+            <End Role="Courses" EntitySet="Courses" />
+            <End Role="Teachers" EntitySet="Teachers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Teachers_ToCourses_3" Association="Self.FK_Teachers_ToCourses_3">
+            <End Role="Courses" EntitySet="Courses" />
+            <End Role="Teachers" EntitySet="Teachers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Teachers_ToCourses_4" Association="Self.FK_Teachers_ToCourses_4">
+            <End Role="Courses" EntitySet="Courses" />
+            <End Role="Teachers" EntitySet="Teachers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Teachers_ToPersons" Association="Self.FK_Teachers_ToPersons">
+            <End Role="Persons" EntitySet="Persons" />
+            <End Role="Teachers" EntitySet="Teachers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="schoolModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Class">
+          <Key>
+            <PropertyRef Name="classID" />
+          </Key>
+          <Property Name="classID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="roomID" Type="Int32" />
+          <Property Name="className" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Room" Relationship="Self.FK_Classes_ToRooms" FromRole="Classes" ToRole="Rooms" />
+          <NavigationProperty Name="Lessons" Relationship="Self.FK_Lessons_ToClasses" FromRole="Classes" ToRole="Lessons" />
+          <NavigationProperty Name="Messages" Relationship="Self.FK_Messages_ToClasses" FromRole="Classes" ToRole="Messages" />
+          <NavigationProperty Name="Students" Relationship="Self.FK_Students_ToClasses" FromRole="Classes" ToRole="Students" />
+          <NavigationProperty Name="Teachers" Relationship="Self.FK_Teachers_ToClasses" FromRole="Classes" ToRole="Teachers" />
+          <NavigationProperty Name="Events" Relationship="schoolModel.FK_Events_ToClasses" FromRole="Class" ToRole="Event" />
+        </EntityType>
+        <EntityType Name="Course">
+          <Key>
+            <PropertyRef Name="courseID" />
+          </Key>
+          <Property Name="courseID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="courseName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Lessons" Relationship="Self.FK_Lessons_ToCourses" FromRole="Courses" ToRole="Lessons" />
+          <NavigationProperty Name="Teachers" Relationship="Self.FK_Teachers_ToCourses_1" FromRole="Courses" ToRole="Teachers" />
+          <NavigationProperty Name="Teachers1" Relationship="Self.FK_Teachers_ToCourses_2" FromRole="Courses" ToRole="Teachers" />
+          <NavigationProperty Name="Teachers2" Relationship="Self.FK_Teachers_ToCourses_3" FromRole="Courses" ToRole="Teachers" />
+          <NavigationProperty Name="Teachers3" Relationship="Self.FK_Teachers_ToCourses_4" FromRole="Courses" ToRole="Teachers" />
+          <Property Name="isHomeroomTeacherOnly" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Grades" Relationship="schoolModel.FK_Scores_ToCourses" FromRole="Course" ToRole="Grade" />
+        </EntityType>
+        <EntityType Name="Lesson">
+          <Key>
+            <PropertyRef Name="lessonID" />
+          </Key>
+          <Property Name="lessonID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="teacherID" Type="Int32" Nullable="false" />
+          <Property Name="courseID" Type="Int32" Nullable="false" />
+          <Property Name="classID" Type="Int32" Nullable="false" />
+          <Property Name="roomID" Type="Int32" />
+          <Property Name="firstLessonDay" Type="Byte" Nullable="false" />
+          <Property Name="firstLessonHour" Type="Byte" Nullable="false" />
+          <Property Name="secondLessonDay" Type="Byte" />
+          <Property Name="secondLessonHour" Type="Byte" />
+          <Property Name="thirdLessonDay" Type="Byte" />
+          <Property Name="thirdLessonHour" Type="Byte" />
+          <Property Name="fourthLessonDay" Type="Byte" />
+          <Property Name="fourthLessonHour" Type="Byte" />
+          <NavigationProperty Name="Class" Relationship="Self.FK_Lessons_ToClasses" FromRole="Lessons" ToRole="Classes" />
+          <NavigationProperty Name="Course" Relationship="Self.FK_Lessons_ToCourses" FromRole="Lessons" ToRole="Courses" />
+          <NavigationProperty Name="Room" Relationship="Self.FK_Lessons_ToRooms" FromRole="Lessons" ToRole="Rooms" />
+          <NavigationProperty Name="Teacher" Relationship="Self.FK_Lessons_ToTeachers" FromRole="Lessons" ToRole="Teachers" />
+        </EntityType>
+        <EntityType Name="Message">
+          <Key>
+            <PropertyRef Name="messageID" />
+          </Key>
+          <Property Name="messageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="senderID" Type="Int32" />
+          <Property Name="recipientID" Type="Int32" />
+          <Property Name="recipientClassID" Type="Int32" />
+          <Property Name="forAllManagement" Type="Boolean" Nullable="false" />
+          <Property Name="forAllTeachers" Type="Boolean" Nullable="false" />
+          <Property Name="forAllStudents" Type="Boolean" Nullable="false" />
+          <Property Name="forEveryone" Type="Boolean" Nullable="false" />
+          <Property Name="data" Type="String" MaxLength="350" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Class" Relationship="Self.FK_Messages_ToClasses" FromRole="Messages" ToRole="Classes" />
+          <NavigationProperty Name="SenderPerson" Relationship="Self.FK_Messages_ToPersons" FromRole="Messages" ToRole="Persons" />
+          <NavigationProperty Name="ReceiverPerson" Relationship="Self.FK_Messages_ToPersonsRecipient" FromRole="Messages" ToRole="Persons" />
+          <Property Name="title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="personID" />
+          </Key>
+          <Property Name="personID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="userID" Type="Int32" Nullable="false" />
+          <Property Name="firstName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="lastName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="phoneNumber" Type="String" MaxLength="12" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="birthdate" Type="DateTime" Precision="0" />
+          <Property Name="isStudent" Type="Boolean" Nullable="false" />
+          <Property Name="isTeacher" Type="Boolean" Nullable="false" />
+          <Property Name="isSecretary" Type="Boolean" Nullable="false" />
+          <Property Name="isPrincipal" Type="Boolean" Nullable="false" />
+          <Property Name="isParent" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="SentMessages" Relationship="Self.FK_Messages_ToPersons" FromRole="Persons" ToRole="Messages" />
+          <NavigationProperty Name="RecievedMessages" Relationship="Self.FK_Messages_ToPersonsRecipient" FromRole="Persons" ToRole="Messages" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Persons_ToUsers" FromRole="Persons" ToRole="Users" />
+          <NavigationProperty Name="ChildrenStudents" Relationship="Self.FK_Students_ToParentPersons" FromRole="Persons" ToRole="Students" />
+          <NavigationProperty Name="Student" Relationship="Self.FK_Students_ToPersons" FromRole="Persons" ToRole="Students" />
+          <NavigationProperty Name="Teacher" Relationship="Self.FK_Teachers_ToPersons" FromRole="Persons" ToRole="Teachers" />
+          <NavigationProperty Name="SubmittedEvents" Relationship="schoolModel.FK_Events_ToPersons" FromRole="Person" ToRole="Event" />
+          <NavigationProperty Name="PersonnalEvents" Relationship="schoolModel.FK_Events_ToRecipientPersons" FromRole="Person" ToRole="Event" />
+        </EntityType>
+        <EntityType Name="Room">
+          <Key>
+            <PropertyRef Name="roomID" />
+          </Key>
+          <Property Name="roomID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="roomName" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Classes" Relationship="Self.FK_Classes_ToRooms" FromRole="Rooms" ToRole="Classes" />
+          <NavigationProperty Name="Lessons" Relationship="Self.FK_Lessons_ToRooms" FromRole="Rooms" ToRole="Lessons" />
+        </EntityType>
+        <EntityType Name="SchoolInfo">
+          <Key>
+            <PropertyRef Name="key" />
+          </Key>
+          <Property Name="key" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="value" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="studentID" />
+          </Key>
+          <Property Name="studentID" Type="Int32" Nullable="false" />
+          <Property Name="classID" Type="Int32" />
+          <Property Name="absencesCounter" Type="Int32" Nullable="false" />
+          <Property Name="parentID" Type="Int32" />
+          <NavigationProperty Name="Class" Relationship="Self.FK_Students_ToClasses" FromRole="Students" ToRole="Classes" />
+          <NavigationProperty Name="ParentPerson" Relationship="Self.FK_Students_ToParentPersons" FromRole="Students" ToRole="Persons" />
+          <NavigationProperty Name="Person" Relationship="Self.FK_Students_ToPersons" FromRole="Students" ToRole="Persons" />
+          <NavigationProperty Name="Grades" Relationship="schoolModel.FK_Scores_ToStudents" FromRole="Student" ToRole="Grade" />
+        </EntityType>
+        <EntityType Name="Teacher">
+          <Key>
+            <PropertyRef Name="teacherID" />
+          </Key>
+          <Property Name="teacherID" Type="Int32" Nullable="false" />
+          <Property Name="classID" Type="Int32" />
+          <Property Name="firstCourseID" Type="Int32" />
+          <Property Name="secondCourseID" Type="Int32" />
+          <Property Name="thirdCourseID" Type="Int32" />
+          <Property Name="fourthCourseID" Type="Int32" />
+          <NavigationProperty Name="Class" Relationship="Self.FK_Teachers_ToClasses" FromRole="Teachers" ToRole="Classes" />
+          <NavigationProperty Name="FirstCourse" Relationship="schoolModel.FK_Teachers_ToCourses_1" FromRole="Teachers" ToRole="Courses" />
+          <NavigationProperty Name="SecondCourse" Relationship="Self.FK_Teachers_ToCourses_2" FromRole="Teachers" ToRole="Courses" />
+          <NavigationProperty Name="ThirdCourse" Relationship="Self.FK_Teachers_ToCourses_3" FromRole="Teachers" ToRole="Courses" />
+          <NavigationProperty Name="FourthCourse" Relationship="Self.FK_Teachers_ToCourses_4" FromRole="Teachers" ToRole="Courses" />
+          <NavigationProperty Name="Lessons" Relationship="Self.FK_Lessons_ToTeachers" FromRole="Teachers" ToRole="Lessons" />
+          <NavigationProperty Name="Person" Relationship="Self.FK_Teachers_ToPersons" FromRole="Teachers" ToRole="Persons" />
+          <NavigationProperty Name="Grades" Relationship="schoolModel.FK_Grades_ToTeachers" FromRole="Teacher" ToRole="Grade" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="userID" />
+          </Key>
+          <Property Name="userID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="username" Type="String" MaxLength="16" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="16" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="isDisabled" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Person" Relationship="schoolModel.FK_Persons_ToUsers" FromRole="Users" ToRole="Persons" />
+          <Property Name="hasToChangePassword" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Classes_ToRooms">
+          <End Role="Rooms" Type="Self.Room" Multiplicity="0..1" />
+          <End Role="Classes" Type="Self.Class" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rooms">
+              <PropertyRef Name="roomID" />
+            </Principal>
+            <Dependent Role="Classes">
+              <PropertyRef Name="roomID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Lessons_ToClasses">
+          <End Role="Classes" Type="Self.Class" Multiplicity="1" />
+          <End Role="Lessons" Type="Self.Lesson" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Classes">
+              <PropertyRef Name="classID" />
+            </Principal>
+            <Dependent Role="Lessons">
+              <PropertyRef Name="classID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Messages_ToClasses">
+          <End Role="Classes" Type="Self.Class" Multiplicity="0..1" />
+          <End Role="Messages" Type="Self.Message" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Classes">
+              <PropertyRef Name="classID" />
+            </Principal>
+            <Dependent Role="Messages">
+              <PropertyRef Name="recipientClassID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Students_ToClasses">
+          <End Role="Classes" Type="Self.Class" Multiplicity="0..1" />
+          <End Role="Students" Type="Self.Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Classes">
+              <PropertyRef Name="classID" />
+            </Principal>
+            <Dependent Role="Students">
+              <PropertyRef Name="classID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Teachers_ToClasses">
+          <End Role="Classes" Type="Self.Class" Multiplicity="0..1" />
+          <End Role="Teachers" Type="Self.Teacher" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Classes">
+              <PropertyRef Name="classID" />
+            </Principal>
+            <Dependent Role="Teachers">
+              <PropertyRef Name="classID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Lessons_ToCourses">
+          <End Role="Courses" Type="schoolModel.Course" Multiplicity="1" />
+          <End Role="Lessons" Type="Self.Lesson" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Courses">
+              <PropertyRef Name="courseID" />
+            </Principal>
+            <Dependent Role="Lessons">
+              <PropertyRef Name="courseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Teachers_ToCourses_1">
+          <End Role="Courses" Type="schoolModel.Course" Multiplicity="0..1" />
+          <End Role="Teachers" Type="Self.Teacher" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Courses">
+              <PropertyRef Name="courseID" />
+            </Principal>
+            <Dependent Role="Teachers">
+              <PropertyRef Name="firstCourseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Teachers_ToCourses_2">
+          <End Role="Courses" Type="schoolModel.Course" Multiplicity="0..1" />
+          <End Role="Teachers" Type="Self.Teacher" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Courses">
+              <PropertyRef Name="courseID" />
+            </Principal>
+            <Dependent Role="Teachers">
+              <PropertyRef Name="secondCourseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Teachers_ToCourses_3">
+          <End Role="Courses" Type="schoolModel.Course" Multiplicity="0..1" />
+          <End Role="Teachers" Type="Self.Teacher" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Courses">
+              <PropertyRef Name="courseID" />
+            </Principal>
+            <Dependent Role="Teachers">
+              <PropertyRef Name="thirdCourseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Teachers_ToCourses_4">
+          <End Role="Courses" Type="schoolModel.Course" Multiplicity="0..1" />
+          <End Role="Teachers" Type="Self.Teacher" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Courses">
+              <PropertyRef Name="courseID" />
+            </Principal>
+            <Dependent Role="Teachers">
+              <PropertyRef Name="fourthCourseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Lessons_ToRooms">
+          <End Role="Rooms" Type="Self.Room" Multiplicity="0..1" />
+          <End Role="Lessons" Type="Self.Lesson" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rooms">
+              <PropertyRef Name="roomID" />
+            </Principal>
+            <Dependent Role="Lessons">
+              <PropertyRef Name="roomID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Lessons_ToTeachers">
+          <End Role="Teachers" Type="Self.Teacher" Multiplicity="1" />
+          <End Role="Lessons" Type="Self.Lesson" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teachers">
+              <PropertyRef Name="teacherID" />
+            </Principal>
+            <Dependent Role="Lessons">
+              <PropertyRef Name="teacherID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Messages_ToPersons">
+          <End Role="Persons" Type="Self.Person" Multiplicity="0..1" />
+          <End Role="Messages" Type="Self.Message" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persons">
+              <PropertyRef Name="personID" />
+            </Principal>
+            <Dependent Role="Messages">
+              <PropertyRef Name="senderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Messages_ToPersonsRecipient">
+          <End Role="Persons" Type="Self.Person" Multiplicity="0..1" />
+          <End Role="Messages" Type="Self.Message" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persons">
+              <PropertyRef Name="personID" />
+            </Principal>
+            <Dependent Role="Messages">
+              <PropertyRef Name="recipientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Persons_ToUsers">
+          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="Persons" Type="Self.Person" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="userID" />
+            </Principal>
+            <Dependent Role="Persons">
+              <PropertyRef Name="userID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Students_ToParentPersons">
+          <End Role="Persons" Type="Self.Person" Multiplicity="0..1" />
+          <End Role="Students" Type="Self.Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persons">
+              <PropertyRef Name="personID" />
+            </Principal>
+            <Dependent Role="Students">
+              <PropertyRef Name="parentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Students_ToPersons">
+          <End Role="Persons" Type="Self.Person" Multiplicity="1" />
+          <End Role="Students" Type="Self.Student" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Persons">
+              <PropertyRef Name="personID" />
+            </Principal>
+            <Dependent Role="Students">
+              <PropertyRef Name="studentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Teachers_ToPersons">
+          <End Role="Persons" Type="Self.Person" Multiplicity="1" />
+          <End Role="Teachers" Type="Self.Teacher" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Persons">
+              <PropertyRef Name="personID" />
+            </Principal>
+            <Dependent Role="Teachers">
+              <PropertyRef Name="teacherID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SchoolEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Classes" EntityType="Self.Class" />
+          <EntitySet Name="Courses" EntityType="schoolModel.Course" />
+          <EntitySet Name="Lessons" EntityType="Self.Lesson" />
+          <EntitySet Name="Messages" EntityType="Self.Message" />
+          <EntitySet Name="Persons" EntityType="Self.Person" />
+          <EntitySet Name="Rooms" EntityType="Self.Room" />
+          <EntitySet Name="SchoolInfo" EntityType="Self.SchoolInfo" />
+          <EntitySet Name="Students" EntityType="Self.Student" />
+          <EntitySet Name="Teachers" EntityType="Self.Teacher" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK_Classes_ToRooms" Association="Self.FK_Classes_ToRooms">
+            <End Role="Rooms" EntitySet="Rooms" />
+            <End Role="Classes" EntitySet="Classes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Lessons_ToClasses" Association="Self.FK_Lessons_ToClasses">
+            <End Role="Classes" EntitySet="Classes" />
+            <End Role="Lessons" EntitySet="Lessons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Messages_ToClasses" Association="Self.FK_Messages_ToClasses">
+            <End Role="Classes" EntitySet="Classes" />
+            <End Role="Messages" EntitySet="Messages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Students_ToClasses" Association="Self.FK_Students_ToClasses">
+            <End Role="Classes" EntitySet="Classes" />
+            <End Role="Students" EntitySet="Students" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Teachers_ToClasses" Association="Self.FK_Teachers_ToClasses">
+            <End Role="Classes" EntitySet="Classes" />
+            <End Role="Teachers" EntitySet="Teachers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Lessons_ToCourses" Association="Self.FK_Lessons_ToCourses">
+            <End Role="Courses" EntitySet="Courses" />
+            <End Role="Lessons" EntitySet="Lessons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Teachers_ToCourses_1" Association="Self.FK_Teachers_ToCourses_1">
+            <End Role="Courses" EntitySet="Courses" />
+            <End Role="Teachers" EntitySet="Teachers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Teachers_ToCourses_2" Association="Self.FK_Teachers_ToCourses_2">
+            <End Role="Courses" EntitySet="Courses" />
+            <End Role="Teachers" EntitySet="Teachers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Teachers_ToCourses_3" Association="Self.FK_Teachers_ToCourses_3">
+            <End Role="Courses" EntitySet="Courses" />
+            <End Role="Teachers" EntitySet="Teachers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Teachers_ToCourses_4" Association="Self.FK_Teachers_ToCourses_4">
+            <End Role="Courses" EntitySet="Courses" />
+            <End Role="Teachers" EntitySet="Teachers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Lessons_ToRooms" Association="Self.FK_Lessons_ToRooms">
+            <End Role="Rooms" EntitySet="Rooms" />
+            <End Role="Lessons" EntitySet="Lessons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Lessons_ToTeachers" Association="Self.FK_Lessons_ToTeachers">
+            <End Role="Teachers" EntitySet="Teachers" />
+            <End Role="Lessons" EntitySet="Lessons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Messages_ToPersons" Association="Self.FK_Messages_ToPersons">
+            <End Role="Persons" EntitySet="Persons" />
+            <End Role="Messages" EntitySet="Messages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Messages_ToPersonsRecipient" Association="Self.FK_Messages_ToPersonsRecipient">
+            <End Role="Persons" EntitySet="Persons" />
+            <End Role="Messages" EntitySet="Messages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Persons_ToUsers" Association="Self.FK_Persons_ToUsers">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Persons" EntitySet="Persons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Students_ToParentPersons" Association="Self.FK_Students_ToParentPersons">
+            <End Role="Persons" EntitySet="Persons" />
+            <End Role="Students" EntitySet="Students" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Students_ToPersons" Association="Self.FK_Students_ToPersons">
+            <End Role="Persons" EntitySet="Persons" />
+            <End Role="Students" EntitySet="Students" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Teachers_ToPersons" Association="Self.FK_Teachers_ToPersons">
+            <End Role="Persons" EntitySet="Persons" />
+            <End Role="Teachers" EntitySet="Teachers" />
+          </AssociationSet>
+          <EntitySet Name="Events" EntityType="schoolModel.Event" />
+          <AssociationSet Name="FK_Events_ToClasses" Association="schoolModel.FK_Events_ToClasses">
+            <End Role="Class" EntitySet="Classes" />
+            <End Role="Event" EntitySet="Events" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Events_ToPersons" Association="schoolModel.FK_Events_ToPersons">
+            <End Role="Person" EntitySet="Persons" />
+            <End Role="Event" EntitySet="Events" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Events_ToRecipientPersons" Association="schoolModel.FK_Events_ToRecipientPersons">
+            <End Role="Person" EntitySet="Persons" />
+            <End Role="Event" EntitySet="Events" />
+          </AssociationSet>
+          <EntitySet Name="Grades" EntityType="schoolModel.Grade" />
+          <AssociationSet Name="FK_Scores_ToCourses" Association="schoolModel.FK_Scores_ToCourses">
+            <End Role="Course" EntitySet="Courses" />
+            <End Role="Grade" EntitySet="Grades" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Grades_ToTeachers" Association="schoolModel.FK_Grades_ToTeachers">
+            <End Role="Teacher" EntitySet="Teachers" />
+            <End Role="Grade" EntitySet="Grades" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Scores_ToStudents" Association="schoolModel.FK_Scores_ToStudents">
+            <End Role="Student" EntitySet="Students" />
+            <End Role="Grade" EntitySet="Grades" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="Event">
+          <Key>
+            <PropertyRef Name="eventID" />
+          </Key>
+          <Property Name="eventID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="submitterID" Type="Int32" Nullable="false" />
+          <Property Name="recipientID" Type="Int32" />
+          <Property Name="recipientClassID" Type="Int32" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="eventDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Class" Relationship="schoolModel.FK_Events_ToClasses" FromRole="Event" ToRole="Class" />
+          <NavigationProperty Name="Submitter" Relationship="schoolModel.FK_Events_ToPersons" FromRole="Event" ToRole="Person" />
+          <NavigationProperty Name="Recipient" Relationship="schoolModel.FK_Events_ToRecipientPersons" FromRole="Event" ToRole="Person" />
+          <Property Name="location" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_Events_ToClasses">
+          <End Type="schoolModel.Class" Role="Class" Multiplicity="0..1" />
+          <End Type="schoolModel.Event" Role="Event" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Class">
+              <PropertyRef Name="classID" />
+            </Principal>
+            <Dependent Role="Event">
+              <PropertyRef Name="recipientClassID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Events_ToPersons">
+          <End Type="schoolModel.Person" Role="Person" Multiplicity="1" />
+          <End Type="schoolModel.Event" Role="Event" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="personID" />
+            </Principal>
+            <Dependent Role="Event">
+              <PropertyRef Name="submitterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Events_ToRecipientPersons">
+          <End Type="schoolModel.Person" Role="Person" Multiplicity="0..1" />
+          <End Type="schoolModel.Event" Role="Event" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="personID" />
+            </Principal>
+            <Dependent Role="Event">
+              <PropertyRef Name="recipientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Grade">
+          <Key>
+            <PropertyRef Name="studentID" />
+            <PropertyRef Name="courseID" />
+          </Key>
+          <Property Name="studentID" Type="Int32" Nullable="false" />
+          <Property Name="courseID" Type="Int32" Nullable="false" />
+          <Property Name="teacherID" Type="Int32" Nullable="false" />
+          <Property Name="score" Type="Byte" Nullable="false" />
+          <Property Name="notes" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Course" Relationship="schoolModel.FK_Scores_ToCourses" FromRole="Grade" ToRole="Course" />
+          <NavigationProperty Name="Teacher" Relationship="schoolModel.FK_Grades_ToTeachers" FromRole="Grade" ToRole="Teacher" />
+          <NavigationProperty Name="Student" Relationship="schoolModel.FK_Scores_ToStudents" FromRole="Grade" ToRole="Student" />
+        </EntityType>
+        <Association Name="FK_Scores_ToCourses">
+          <End Type="schoolModel.Course" Role="Course" Multiplicity="1" />
+          <End Type="schoolModel.Grade" Role="Grade" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="courseID" />
+            </Principal>
+            <Dependent Role="Grade">
+              <PropertyRef Name="courseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Grades_ToTeachers">
+          <End Type="schoolModel.Teacher" Role="Teacher" Multiplicity="1" />
+          <End Type="schoolModel.Grade" Role="Grade" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teacher">
+              <PropertyRef Name="teacherID" />
+            </Principal>
+            <Dependent Role="Grade">
+              <PropertyRef Name="teacherID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Scores_ToStudents">
+          <End Type="schoolModel.Student" Role="Student" Multiplicity="1" />
+          <End Type="schoolModel.Grade" Role="Grade" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="studentID" />
+            </Principal>
+            <Dependent Role="Grade">
+              <PropertyRef Name="studentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="schoolModelStoreContainer" CdmEntityContainer="SchoolEntities">
+          <EntitySetMapping Name="Classes">
+            <EntityTypeMapping TypeName="schoolModel.Class">
+              <MappingFragment StoreEntitySet="Classes">
+                <ScalarProperty Name="classID" ColumnName="classID" />
+                <ScalarProperty Name="roomID" ColumnName="roomID" />
+                <ScalarProperty Name="className" ColumnName="className" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Courses">
+            <EntityTypeMapping TypeName="schoolModel.Course">
+              <MappingFragment StoreEntitySet="Courses">
+                <ScalarProperty Name="isHomeroomTeacherOnly" ColumnName="isHomeroomTeacherOnly" />
+                <ScalarProperty Name="courseID" ColumnName="courseID" />
+                <ScalarProperty Name="courseName" ColumnName="courseName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Lessons">
+            <EntityTypeMapping TypeName="schoolModel.Lesson">
+              <MappingFragment StoreEntitySet="Lessons">
+                <ScalarProperty Name="lessonID" ColumnName="lessonID" />
+                <ScalarProperty Name="teacherID" ColumnName="teacherID" />
+                <ScalarProperty Name="courseID" ColumnName="courseID" />
+                <ScalarProperty Name="classID" ColumnName="classID" />
+                <ScalarProperty Name="roomID" ColumnName="roomID" />
+                <ScalarProperty Name="firstLessonDay" ColumnName="firstLessonDay" />
+                <ScalarProperty Name="firstLessonHour" ColumnName="firstLessonHour" />
+                <ScalarProperty Name="secondLessonDay" ColumnName="secondLessonDay" />
+                <ScalarProperty Name="secondLessonHour" ColumnName="secondLessonHour" />
+                <ScalarProperty Name="thirdLessonDay" ColumnName="thirdLessonDay" />
+                <ScalarProperty Name="thirdLessonHour" ColumnName="thirdLessonHour" />
+                <ScalarProperty Name="fourthLessonDay" ColumnName="fourthLessonDay" />
+                <ScalarProperty Name="fourthLessonHour" ColumnName="fourthLessonHour" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Messages">
+            <EntityTypeMapping TypeName="schoolModel.Message">
+              <MappingFragment StoreEntitySet="Messages">
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="messageID" ColumnName="messageID" />
+                <ScalarProperty Name="senderID" ColumnName="senderID" />
+                <ScalarProperty Name="recipientID" ColumnName="recipientID" />
+                <ScalarProperty Name="recipientClassID" ColumnName="recipientClassID" />
+                <ScalarProperty Name="forAllManagement" ColumnName="forAllManagement" />
+                <ScalarProperty Name="forAllTeachers" ColumnName="forAllTeachers" />
+                <ScalarProperty Name="forAllStudents" ColumnName="forAllStudents" />
+                <ScalarProperty Name="forEveryone" ColumnName="forEveryone" />
+                <ScalarProperty Name="data" ColumnName="data" />
+                <ScalarProperty Name="date" ColumnName="date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Persons">
+            <EntityTypeMapping TypeName="schoolModel.Person">
+              <MappingFragment StoreEntitySet="Persons">
+                <ScalarProperty Name="lastName" ColumnName="lastName" />
+                <ScalarProperty Name="personID" ColumnName="personID" />
+                <ScalarProperty Name="userID" ColumnName="userID" />
+                <ScalarProperty Name="firstName" ColumnName="firstName" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="phoneNumber" ColumnName="phoneNumber" />
+                <ScalarProperty Name="birthdate" ColumnName="birthdate" />
+                <ScalarProperty Name="isStudent" ColumnName="isStudent" />
+                <ScalarProperty Name="isTeacher" ColumnName="isTeacher" />
+                <ScalarProperty Name="isSecretary" ColumnName="isSecretary" />
+                <ScalarProperty Name="isPrincipal" ColumnName="isPrincipal" />
+                <ScalarProperty Name="isParent" ColumnName="isParent" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rooms">
+            <EntityTypeMapping TypeName="schoolModel.Room">
+              <MappingFragment StoreEntitySet="Rooms">
+                <ScalarProperty Name="roomID" ColumnName="roomID" />
+                <ScalarProperty Name="roomName" ColumnName="roomName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SchoolInfo">
+            <EntityTypeMapping TypeName="schoolModel.SchoolInfo">
+              <MappingFragment StoreEntitySet="SchoolInfo">
+                <ScalarProperty Name="key" ColumnName="key" />
+                <ScalarProperty Name="value" ColumnName="value" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Students">
+            <EntityTypeMapping TypeName="schoolModel.Student">
+              <MappingFragment StoreEntitySet="Students">
+                <ScalarProperty Name="studentID" ColumnName="studentID" />
+                <ScalarProperty Name="classID" ColumnName="classID" />
+                <ScalarProperty Name="absencesCounter" ColumnName="absencesCounter" />
+                <ScalarProperty Name="parentID" ColumnName="parentID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Teachers">
+            <EntityTypeMapping TypeName="schoolModel.Teacher">
+              <MappingFragment StoreEntitySet="Teachers">
+                <ScalarProperty Name="teacherID" ColumnName="teacherID" />
+                <ScalarProperty Name="classID" ColumnName="classID" />
+                <ScalarProperty Name="firstCourseID" ColumnName="firstCourseID" />
+                <ScalarProperty Name="secondCourseID" ColumnName="secondCourseID" />
+                <ScalarProperty Name="thirdCourseID" ColumnName="thirdCourseID" />
+                <ScalarProperty Name="fourthCourseID" ColumnName="fourthCourseID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="schoolModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="hasToChangePassword" ColumnName="hasToChangePassword" />
+                <ScalarProperty Name="userID" ColumnName="userID" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="isDisabled" ColumnName="isDisabled" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Events">
+            <EntityTypeMapping TypeName="schoolModel.Event">
+              <MappingFragment StoreEntitySet="Events">
+                <ScalarProperty Name="location" ColumnName="location" />
+                <ScalarProperty Name="eventDate" ColumnName="eventDate" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="recipientClassID" ColumnName="recipientClassID" />
+                <ScalarProperty Name="recipientID" ColumnName="recipientID" />
+                <ScalarProperty Name="submitterID" ColumnName="submitterID" />
+                <ScalarProperty Name="eventID" ColumnName="eventID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Grades">
+            <EntityTypeMapping TypeName="schoolModel.Grade">
+              <MappingFragment StoreEntitySet="Grades">
+                <ScalarProperty Name="notes" ColumnName="notes" />
+                <ScalarProperty Name="score" ColumnName="score" />
+                <ScalarProperty Name="teacherID" ColumnName="teacherID" />
+                <ScalarProperty Name="courseID" ColumnName="courseID" />
+                <ScalarProperty Name="studentID" ColumnName="studentID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

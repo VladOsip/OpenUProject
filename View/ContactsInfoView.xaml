@@ -1,0 +1,53 @@
+﻿<UserControl x:Class="MySchoolYear.View.ContactsInfoView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MySchoolYear.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="560" d:DesignWidth="650"
+             Background = "{StaticResource WindowBackgroundBrush}">
+    <StackPanel>
+        <TextBlock Text="{Binding ScreenName}" Style="{StaticResource MainTitleText}" HorizontalAlignment="Center"/>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0">
+                <TextBlock Text="מזכירות:" HorizontalAlignment="Center" Style="{StaticResource SecondaryTitleText}"/>
+                <ItemsControl ItemsSource="{Binding Path=Secretaries}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="{Binding Path=Name}" Style="{StaticResource BasicText}" HorizontalAlignment="Center"/>
+                                <TextBlock Grid.Column="1" Text="{Binding Path=Phone}" Style="{StaticResource BasicText}" HorizontalAlignment="Center"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
+            <StackPanel Grid.Column="1">
+                <TextBlock HorizontalAlignment="Center" Text="המנהל:" Style="{StaticResource SecondaryTitleText}"/>
+                <TextBlock Text="{Binding Path=PrincipalName}" Style="{StaticResource BasicText}" HorizontalAlignment="Center"/>
+                <TextBlock Text="{Binding Path=PrincipalEmail}" Style="{StaticResource BasicText}" HorizontalAlignment="Center"/>
+            </StackPanel>
+        </Grid>
+
+        <TextBlock Text="מורים:" Style="{StaticResource SecondaryTitleText}" HorizontalAlignment="Center"/>
+        <DataGrid HorizontalAlignment="Center" ItemsSource="{Binding Path=Teachers}"
+                  ScrollViewer.HorizontalScrollBarVisibility="Hidden" AutoGenerateColumns="False" IsReadOnly="True" FlowDirection="RightToLeft"
+                  VerticalAlignment="Top" HorizontalContentAlignment="Center" RowHeaderWidth ="0" Margin="0,5,0,0" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="מורה" Binding="{Binding Path=Name}" Width="100" HeaderStyle="{StaticResource ColumnHeaderMainStyle}"/>
+                <DataGridTextColumn Header="מקצועות" Binding="{Binding Path=CoursesNames}" Width="150" HeaderStyle="{StaticResource ColumnHeaderMainStyle}"/>
+                <DataGridTextColumn Header="טלפון" Binding="{Binding Path=Phone}" Width="70" HeaderStyle="{StaticResource ColumnHeaderMainStyle}"/>
+                <DataGridTextColumn Header="מייל" Binding="{Binding Path=Email}" Width="150" HeaderStyle="{StaticResource ColumnHeaderMainStyle}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </StackPanel>
+</UserControl>

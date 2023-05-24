@@ -1,0 +1,67 @@
+﻿<UserControl x:Class="MySchoolYear.View.StudentGradesView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MySchoolYear.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="560" d:DesignWidth="650"
+             Background = "{StaticResource WindowBackgroundBrush}">
+    <StackPanel>
+        <TextBlock Text="{Binding ScreenName}" HorizontalAlignment="Center" Style="{StaticResource MainTitleText}"/>
+        
+        <ComboBox ItemsSource="{Binding Path=Students}" SelectedValue="{Binding Path=CurrentStudent}" Width="200" 
+                  IsEnabled="{Binding Path=CanViewDifferentStudents}">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Class.className, StringFormat='כיתה {0}: '}"/>
+                        <TextBlock Text="{Binding Person.lastName}" />
+                        <TextBlock Text="{Binding Person.firstName, StringFormat=' {0} '}" />
+                    </StackPanel>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+
+        <TextBlock Text="{Binding HomeroomTeacher}" Style="{StaticResource SecondaryTitleText}" HorizontalAlignment="Center"/>
+
+        <ListView ItemsSource="{Binding Path=Grades}" SelectedItem="{Binding Path=SelectedGrade}" ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                   Width="500" ItemContainerStyle="{StaticResource BorderedItem}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="מקצוע" DisplayMemberBinding="{Binding Path=CourseName}" Width="100"/>
+                    <GridViewColumn Header="ציון" DisplayMemberBinding="{Binding Path=Score}" Width="50"/>
+                    <GridViewColumn Header="הערות" DisplayMemberBinding="{Binding Path=TeacherNotes}" Width="350"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        
+        <TextBlock Text="{Binding Path=Absences, StringFormat='חיסורים:{0}.'}"
+                   Style="{StaticResource SecondaryTitleText}" HorizontalAlignment="Center"/>
+
+        <TextBlock Text="{Binding Path=AverageGrade, StringFormat='ממוצע:{0}.'}"
+                   Style="{StaticResource SecondaryTitleText}" HorizontalAlignment="Center"/>
+
+        <Separator/>
+
+        <StackPanel Margin="5,148,0,0" IsEnabled="{Binding CanAppealGrades}">
+            <Grid HorizontalAlignment="Left">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.7*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="0" Grid.Column="0" Text="ערעור על ציון במקצוע:" Style="{StaticResource BasicText}"/>
+                <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding SelectedGrade.CourseName}" Style="{StaticResource BasicText}"/>
+
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="בקשתך:" Style="{StaticResource BasicText}" Margin="0,5,0,0"/>
+                <TextBox Grid.Row="1" Width="350" Height="100" Grid.Column="1" Text="{Binding AppealText}" Margin="0,5,0,0"/>
+            </Grid>
+            <Button Content="ערער" Command="{Binding AppealGradeCommand}" Margin="0,10,150,0"/>
+        </StackPanel>
+    </StackPanel>
+</UserControl>

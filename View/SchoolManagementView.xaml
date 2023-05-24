@@ -1,0 +1,68 @@
+﻿<UserControl x:Class="MySchoolYear.View.SchoolManagementView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MySchoolYear.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="560" d:DesignWidth="650"
+             Background = "{StaticResource WindowBackgroundBrush}">
+    <StackPanel>
+        <TextBlock HorizontalAlignment="Center" Text="{Binding ScreenName}" Style="{StaticResource MainTitleText}"/>
+        <StackPanel Orientation="Horizontal">
+            <Grid Width="450" HorizontalAlignment="Center" Margin="0,30,0,0">
+                <Grid.Resources >
+                    <Style TargetType="Border" >
+                        <Setter Property="Padding" Value="0,20" />
+                    </Style>
+                </Grid.Resources>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1.75*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Border Grid.Row="0" Grid.Column="0">
+                    <TextBlock Text="שם בית הספר:" Style="{StaticResource SecondaryTitleText}"/>
+                </Border>
+                <Border Grid.Row="0" Grid.Column="1">
+                    <TextBox Width="285" Text="{Binding Path=SchoolName}"/>
+                </Border>
+
+                <Border Grid.Row="1" Grid.Column="0">
+                    <TextBlock Text="תיאור בית הספר:" Style="{StaticResource SecondaryTitleText}"/>
+                </Border>
+                <Border Grid.Row="1" Grid.Column="1">
+                    <TextBox Width="285" Height="75" Text="{Binding Path=SchoolDescription}"/>
+                </Border>
+
+                <Border Grid.Row="2" Grid.Column="0">
+                    <TextBlock Text="לוגו:" Style="{StaticResource SecondaryTitleText}"/>
+                </Border>
+                <Border Grid.Row="2" Grid.Column="1">
+                    <TextBox Width="205" FontSize="14" IsReadOnly="True" HorizontalAlignment="Left" 
+                             Text="{Binding Path=SchoolLogo, Mode=OneWay}"/>
+                </Border>
+                <Border Grid.Row="2" Grid.Column="1">
+                    <Button Content="בחר קובץ" Width="85" HorizontalAlignment="Right" d:LayoutOverrides="Height"
+                            Command="{Binding Path=ChooseImageCommand}"/>
+                </Border>
+            </Grid>
+            <Image Width="200" Height="125" Source="{Binding Path=SchoolLogoFullPath}" Margin="25,0,0,0" Stretch="Fill" />
+        </StackPanel>
+        
+        <Grid Margin="0,80,0,20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Height="40" Width="200" FontSize="20" Background="{StaticResource DangerousActionColorBrush}" 
+                    Content="התחל שנה חדשה" Command="{Binding Path=PrepareNewYearCommand}"/>
+            <Button Grid.Column="1" Height="40" FontSize="20" Content="עדכן" Width="200" Command="{Binding Path=SaveChangesCommand}"/>
+        </Grid>
+    </StackPanel>
+</UserControl>

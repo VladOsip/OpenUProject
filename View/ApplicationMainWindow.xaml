@@ -1,0 +1,88 @@
+﻿<Window x:Class="MySchoolYear.View.ApplicationMainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MySchoolYear.View"
+        xmlns:viewModels="clr-namespace:MySchoolYear.ViewModel"
+        mc:Ignorable="d"
+        x:Name="TheMainApplicationWindow"
+        Title="MySchoolYear" Height="600" Width="800"
+        Background = "{StaticResource WindowBackgroundBrush}">
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type viewModels:SchoolInfoViewModel}">
+            <local:SchoolInfoView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModels:ContactsInfoViewModel}">
+            <local:ContactsInfoView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModels:StudentGradesViewModel}">
+            <local:StudentGradesView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModels:WeeklyScheduleViewModel}">
+            <local:WeeklyScheduleView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModels:CalenderViewModel}">
+            <local:CalenderView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModels:MessagesDisplayViewModel}">
+            <local:MessagesDisplayView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModels:CreateMessageViewModel}">
+            <local:CreateMessageView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModels:LessonSummaryViewModel}">
+            <local:LessonSummaryView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModels:GradesReportViewModel}">
+            <local:GradesReportView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModels:EventManagementViewModel}">
+            <local:EventManagementView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModels:SchoolManagementViewModel}">
+            <local:SchoolManagementView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModels:ClassManagementViewModel}">
+            <local:ClassManagementView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModels:RoomManagementViewModel}">
+            <local:RoomManagementView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModels:CourseManagementViewModel}">
+            <local:CourseManagementView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModels:LessonManagementViewModel}">
+            <local:LessonManagementView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModels:UserCreationViewModel}">
+            <local:UserCreationView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModels:UserUpdateViewModel}">
+            <local:UserUpdateView />
+        </DataTemplate>
+    </Window.Resources>
+
+    <DockPanel>
+        <Border DockPanel.Dock="Right" BorderBrush="Black" BorderThickness="0,0,1,0">
+            <Grid>
+                <ItemsControl ItemsSource="{Binding ScreensViewModels}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Button Content="{Binding ScreenName}"
+                                FontSize="16"
+                                FontWeight="Medium"
+                                Command="{Binding DataContext.ChangeScreenCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
+                                CommandParameter="{Binding}"
+                                Margin="1,0,1,1"/>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                <Button VerticalAlignment="Bottom" Content="התנתק" Background="{StaticResource DangerousActionColorBrush}"
+                        Command="{Binding Path=LogoutCommand}" CommandParameter="{Binding ElementName=TheMainApplicationWindow}"/>
+            </Grid>
+        </Border>
+        
+        <ContentControl Content="{Binding CurrentScreenViewModel}" />
+    </DockPanel>
+</Window>

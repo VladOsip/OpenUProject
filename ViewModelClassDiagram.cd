@@ -1,0 +1,705 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Class Name="MySchoolYear.ViewModel.Utilities.BaseViewModel">
+    <Position X="22" Y="0.75" Width="3" />
+    <AssociationLine Name="_messageBoxService" Type="MySchoolYear.ViewModel.Utilities.IMessageBoxService">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.965" Y="0.033" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAECAAAAAAAAIAAAAQAQgAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModel\Utilities\BaseViewModel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_messageBoxService" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MySchoolYear.ViewModel.Utilities.ObservableDictionary&lt;TKey, TValue&gt;" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="15.75" Y="7" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>CSIChgAAWBxMoFAAOJcEjgQggAAEgxAGABAoIOxABRI=</HashCode>
+      <FileName>ViewModel\Utilities\ObservableDictionary.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="MySchoolYear.ViewModel.Utilities.RelayCommand" BaseTypeListCollapsed="true">
+    <Position X="19.25" Y="7" Width="3" />
+    <Members>
+      <Field Name="_canExecute" Hidden="true" />
+      <Field Name="_execute" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEACAAQAAECAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModel\Utilities\RelayCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MySchoolYear.ViewModel.ApplicationViewModel">
+    <Position X="24" Y="4.25" Width="3" />
+    <Members>
+      <Field Name="_changeScreenCommand" Hidden="true" />
+      <Field Name="_connectedPersonID" Hidden="true" />
+      <Field Name="_currentScreenViewModel" Hidden="true" />
+      <Field Name="_logoutCommand" Hidden="true" />
+      <Field Name="_screenViewModels" Hidden="true" />
+      <Field Name="_updateScreensCommand" Hidden="true" />
+    </Members>
+    <AssociationLine Name="ScreensViewModels" Type="MySchoolYear.ViewModel.Utilities.IScreenViewModel" ManuallyRouted="true" FixedToPoint="true">
+      <Path>
+        <Point X="27" Y="5.483" />
+        <Point X="31.5" Y="5.483" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="0.93" Y="-0.106" Height="0.182" Width="2.95" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="CurrentScreenViewModel" Type="MySchoolYear.ViewModel.Utilities.IScreenViewModel" FixedToPoint="true">
+      <Path>
+        <Point X="27" Y="6.01" />
+        <Point X="31.5" Y="6.01" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="1.724" Y="-0.053" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAQAAAAAAgCAAAAAAAAAIAAARIAAAAEBAAAqE=</HashCode>
+      <FileName>ViewModel\ApplicationViewModel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="CurrentScreenViewModel" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="ScreensViewModels" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="MySchoolYear.ViewModel.CalenderViewModel">
+    <Position X="36.25" Y="9.75" Width="3" />
+    <Members>
+      <Field Name="_calender" Hidden="true" />
+      <Field Name="_months" Hidden="true" />
+      <Field Name="_schoolData" Hidden="true" />
+      <Field Name="_selectedDayEvents" Hidden="true" />
+      <Field Name="_selectedEvent" Hidden="true" />
+      <Field Name="_selectedMonth" Hidden="true" />
+      <Field Name="_updateCalenderCommand" Hidden="true" />
+      <Field Name="_updateSelectedDayCommand" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <InheritanceLine Type="MySchoolYear.ViewModel.Utilities.BaseViewModel" ManuallyRouted="true">
+      <Path>
+        <Point X="23.5" Y="3.334" />
+        <Point X="23.5" Y="9.403" />
+        <Point X="37.75" Y="9.403" />
+        <Point X="37.75" Y="9.75" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>ACAIQAgEBCAAAQAAAAAAQAAAgQAABEAEAAAJQAYAAAg=</HashCode>
+      <FileName>ViewModel\CalenderViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MySchoolYear.ViewModel.ClassManagementViewModel">
+    <Position X="32.5" Y="9.75" Width="3" />
+    <Members>
+      <Field Name="_availableRooms" Hidden="true" />
+      <Field Name="_availableTeachers" Hidden="true" />
+      <Field Name="_classesTableData" Hidden="true" />
+      <Field Name="_createNewClassCommand" Hidden="true" />
+      <Field Name="_deleteClassCommand" Hidden="true" />
+      <Field Name="_lessonsInSelectedClass" Hidden="true" />
+      <Field Name="_previousHomeroomTeacher" Hidden="true" />
+      <Field Name="_previousRoom" Hidden="true" />
+      <Field Name="_refreshDataCommand" Hidden="true" />
+      <Field Name="_schoolData" Hidden="true" />
+      <Field Name="_selectedClass" Hidden="true" />
+      <Field Name="_selectedClassName" Hidden="true" />
+      <Field Name="_selectedRoom" Hidden="true" />
+      <Field Name="_selectedTeacher" Hidden="true" />
+      <Field Name="_studentsInSelectedClass" Hidden="true" />
+      <Field Name="_updateClassCommand" Hidden="true" />
+      <Field Name="NOT_ASSIGNED" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Class Name="MySchoolYear.ViewModel.ClassManagementViewModel.ClassData" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>ViewModel\ClassManagementViewModel.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="MySchoolYear.ViewModel.ClassManagementViewModel.LessonInClass" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>ViewModel\ClassManagementViewModel.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAwAAogCigAQAARAQADoEAQAAgBACCgAAdAAIKAEY=</HashCode>
+      <FileName>ViewModel\ClassManagementViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MySchoolYear.ViewModel.ContactsInfoViewModel">
+    <Position X="29.5" Y="22.5" Width="3" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Struct Name="MySchoolYear.ViewModel.ContactsInfoViewModel.SecretaryInfo" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>ViewModel\ContactsInfoViewModel.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+      <Struct Name="MySchoolYear.ViewModel.ContactsInfoViewModel.TeacherInfo" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>ViewModel\ContactsInfoViewModel.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>EAAQQAAACCAAAQAAAAAgAAAAAAAAAAAAAAAAAgIAAAA=</HashCode>
+      <FileName>ViewModel\ContactsInfoViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MySchoolYear.ViewModel.CourseManagementViewModel">
+    <Position X="6.75" Y="22.5" Width="3" />
+    <Members>
+      <Field Name="_coursesTableData" Hidden="true" />
+      <Field Name="_createNewCourseCommand" Hidden="true" />
+      <Field Name="_deleteCourseCommand" Hidden="true" />
+      <Field Name="_isSelectedCourseHomeroomOnly" Hidden="true" />
+      <Field Name="_lessonsOfSelectedCourse" Hidden="true" />
+      <Field Name="_refreshDataCommand" Hidden="true" />
+      <Field Name="_schoolData" Hidden="true" />
+      <Field Name="_selectedCourse" Hidden="true" />
+      <Field Name="_selectedCourseName" Hidden="true" />
+      <Field Name="_teachersOfSelectedCourse" Hidden="true" />
+      <Field Name="_updateCourseCommand" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Class Name="MySchoolYear.ViewModel.CourseManagementViewModel.CourseData" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>ViewModel\CourseManagementViewModel.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="MySchoolYear.ViewModel.CourseManagementViewModel.LessonsOfCourse" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>ViewModel\CourseManagementViewModel.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <InheritanceLine Type="MySchoolYear.ViewModel.Utilities.BaseViewModel" ManuallyRouted="true">
+      <Path>
+        <Point X="23.5" Y="3.333" />
+        <Point X="23.5" Y="22.166" />
+        <Point X="8.25" Y="22.166" />
+        <Point X="8.25" Y="22.5" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>SAKASCFAgCAAAQAEAAAAAQCgAAQQBEAAAQCAAEICCAA=</HashCode>
+      <FileName>ViewModel\CourseManagementViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MySchoolYear.ViewModel.CreateMessageViewModel">
+    <Position X="13.75" Y="22.5" Width="3" />
+    <Members>
+      <Field Name="_canSendToClass" Hidden="true" />
+      <Field Name="_canSendToEveryone" Hidden="true" />
+      <Field Name="_messageText" Hidden="true" />
+      <Field Name="_messageTitle" Hidden="true" />
+      <Field Name="_recipients" Hidden="true" />
+      <Field Name="_refreshDataCommand" Hidden="true" />
+      <Field Name="_schoolData" Hidden="true" />
+      <Field Name="_selectedRecipient" Hidden="true" />
+      <Field Name="_sendingToClass" Hidden="true" />
+      <Field Name="_sendingToEveryone" Hidden="true" />
+      <Field Name="_sendingToManagement" Hidden="true" />
+      <Field Name="_sendingToParent" Hidden="true" />
+      <Field Name="_sendingToStudent" Hidden="true" />
+      <Field Name="_sendingToTeacher" Hidden="true" />
+      <Field Name="_sendMessageCommand" Hidden="true" />
+      <Field Name="EVERYONE_OPTION" Hidden="true" />
+      <Field Name="NOT_ASSIGNED" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>gwAAQAGQgSDAAUACAABAghgABEIIJMgAAAgQGAYQiAA=</HashCode>
+      <FileName>ViewModel\CreateMessageViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MySchoolYear.ViewModel.EventManagementViewModel">
+    <Position X="14.75" Y="9.75" Width="4" />
+    <Members>
+      <Field Name="_availableSearchChoices" Hidden="true" />
+      <Field Name="_canSendToEveryone" Hidden="true" />
+      <Field Name="_deleteEventCommand" Hidden="true" />
+      <Field Name="_eventDatetime" Hidden="true" />
+      <Field Name="_eventLocation" Hidden="true" />
+      <Field Name="_eventName" Hidden="true" />
+      <Field Name="_eventsTableData" Hidden="true" />
+      <Field Name="_eventText" Hidden="true" />
+      <Field Name="_possibleEvents" Hidden="true" />
+      <Field Name="_possibleLocations" Hidden="true" />
+      <Field Name="_recipients" Hidden="true" />
+      <Field Name="_refreshDataCommand" Hidden="true" />
+      <Field Name="_schoolData" Hidden="true" />
+      <Field Name="_searchingClassEvents" Hidden="true" />
+      <Field Name="_searchingSchoolEvents" Hidden="true" />
+      <Field Name="_searchingStudentEvents" Hidden="true" />
+      <Field Name="_selectedEvent" Hidden="true" />
+      <Field Name="_selectedRecipient" Hidden="true" />
+      <Field Name="_selectedSearchChoiceID" Hidden="true" />
+      <Field Name="_sendEventCommand" Hidden="true" />
+      <Field Name="_sendingToClass" Hidden="true" />
+      <Field Name="_sendingToEveryone" Hidden="true" />
+      <Field Name="_sendingToStudent" Hidden="true" />
+      <Field Name="_updateEventCommand" Hidden="true" />
+      <Field Name="EVERYONE_OPTION" Hidden="true" />
+      <Field Name="NOT_ASSIGNED" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="MySchoolYear.ViewModel.EventManagementViewModel.EventRecipientsTypes" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>ViewModel\EventManagementViewModel.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Enum Name="MySchoolYear.ViewModel.EventManagementViewModel.ActionOnEvent" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>ViewModel\EventManagementViewModel.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Class Name="MySchoolYear.ViewModel.EventManagementViewModel.EventData" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>ViewModel\EventManagementViewModel.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>kkRaQEKdwGCAAciCAAEAURoAhMpoBEgBEQQQDAIkg0A=</HashCode>
+      <FileName>ViewModel\EventManagementViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MySchoolYear.ViewModel.GradesReportViewModel">
+    <Position X="24.5" Y="9.75" Width="3" />
+    <Members>
+      <Field Name="_classes" Hidden="true" />
+      <Field Name="_courses" Hidden="true" />
+      <Field Name="_refreshDataCommand" Hidden="true" />
+      <Field Name="_schoolData" Hidden="true" />
+      <Field Name="_selectedClass" Hidden="true" />
+      <Field Name="_selectedCourse" Hidden="true" />
+      <Field Name="_studentGrades" Hidden="true" />
+      <Field Name="_updateGradesCommand" Hidden="true" />
+      <Field Name="NOT_ASSIGNED" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Class Name="MySchoolYear.ViewModel.GradesReportViewModel.GradedStudent" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>ViewModel\GradesReportViewModel.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>CCAA0CAAgCEBBQAAQAAABCAAAFgABAEAgAAQABIAAAA=</HashCode>
+      <FileName>ViewModel\GradesReportViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MySchoolYear.ViewModel.LessonManagementViewModel">
+    <Position X="28.5" Y="9.75" Width="3" />
+    <Members>
+      <Field Name="_availableClasses" Hidden="true" />
+      <Field Name="_availableCourses" Hidden="true" />
+      <Field Name="_availableDays" Hidden="true" />
+      <Field Name="_availableHours" Hidden="true" />
+      <Field Name="_availableRooms" Hidden="true" />
+      <Field Name="_availableSearchChoices" Hidden="true" />
+      <Field Name="_availableTeachers" Hidden="true" />
+      <Field Name="_createLessonCommand" Hidden="true" />
+      <Field Name="_deleteLessonCommand" Hidden="true" />
+      <Field Name="_lessonFirstDay" Hidden="true" />
+      <Field Name="_lessonFirstHour" Hidden="true" />
+      <Field Name="_lessonFourthDay" Hidden="true" />
+      <Field Name="_lessonFourthHour" Hidden="true" />
+      <Field Name="_lessonSecondDay" Hidden="true" />
+      <Field Name="_lessonSecondHour" Hidden="true" />
+      <Field Name="_lessonsTableData" Hidden="true" />
+      <Field Name="_lessonThirdDay" Hidden="true" />
+      <Field Name="_lessonThirdHour" Hidden="true" />
+      <Field Name="_refreshDataCommand" Hidden="true" />
+      <Field Name="_schoolData" Hidden="true" />
+      <Field Name="_searchingByClass" Hidden="true" />
+      <Field Name="_searchingByCourse" Hidden="true" />
+      <Field Name="_searchingByTeacher" Hidden="true" />
+      <Field Name="_selectedClassID" Hidden="true" />
+      <Field Name="_selectedCourseID" Hidden="true" />
+      <Field Name="_selectedLesson" Hidden="true" />
+      <Field Name="_selectedRoomID" Hidden="true" />
+      <Field Name="_selectedSearchChoiceID" Hidden="true" />
+      <Field Name="_selectedTeacherID" Hidden="true" />
+      <Field Name="_teacherAvailableCourses" Hidden="true" />
+      <Field Name="_updateLessonCommand" Hidden="true" />
+      <Field Name="NOT_ASSIGNED" Hidden="true" />
+    </Members>
+    <NestedTypes>
+      <Class Name="MySchoolYear.ViewModel.LessonManagementViewModel.LessonData" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>ViewModel\LessonManagementViewModel.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="MySchoolYear.ViewModel.LessonManagementViewModel.LessonTimes" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>ViewModel\LessonManagementViewModel.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Enum Name="MySchoolYear.ViewModel.LessonManagementViewModel.SearchCategory" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>ViewModel\LessonManagementViewModel.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>DCAGQBgsmKhHIQGgQBcESCMAgAgJDAz4oAkYQoIgAiE=</HashCode>
+      <FileName>ViewModel\LessonManagementViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MySchoolYear.ViewModel.LessonSummaryViewModel">
+    <Position X="33.25" Y="22.5" Width="3" />
+    <Members>
+      <Field Name="_classes" Hidden="true" />
+      <Field Name="_courses" Hidden="true" />
+      <Field Name="_refreshDataCommand" Hidden="true" />
+      <Field Name="_reportLessonCommand" Hidden="true" />
+      <Field Name="_schoolData" Hidden="true" />
+      <Field Name="_selectedClass" Hidden="true" />
+      <Field Name="_selectedCourse" Hidden="true" />
+      <Field Name="_selectedDate" Hidden="true" />
+      <Field Name="_studentsInLesson" Hidden="true" />
+      <Field Name="NOT_ASSIGNED" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Class Name="MySchoolYear.ViewModel.LessonSummaryViewModel.StudentAtLesson" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>ViewModel\LessonSummaryViewModel.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <InheritanceLine Type="MySchoolYear.ViewModel.Utilities.BaseViewModel" ManuallyRouted="true">
+      <Path>
+        <Point X="23.5" Y="3.333" />
+        <Point X="23.5" Y="22.133" />
+        <Point X="34.75" Y="22.133" />
+        <Point X="34.75" Y="22.5" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>CCAA0CAAoCEAAUCIACQAgCAAABgABAAAgAAQABIAAAA=</HashCode>
+      <FileName>ViewModel\LessonSummaryViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MySchoolYear.ViewModel.LoginViewModel">
+    <Position X="15.5" Y="4" Width="3.25" />
+    <Members>
+      <Field Name="_loginCommand" Hidden="true" />
+      <Field Name="_mySchoolModel" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAYgAAAAQACAAAAAAAAAAAAAAgAAACAAAA=</HashCode>
+      <FileName>ViewModel\LoginViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MySchoolYear.ViewModel.MessagesDisplayViewModel">
+    <Position X="17.75" Y="22.5" Width="3" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Class Name="MySchoolYear.ViewModel.MessagesDisplayViewModel.DisplayedMessage" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>ViewModel\MessagesDisplayViewModel.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAQIAAACAAAQAAAAAAAAAAAAAAAAAAAAAAAQIQAAA=</HashCode>
+      <FileName>ViewModel\MessagesDisplayViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MySchoolYear.ViewModel.NewPasswordViewModel">
+    <Position X="19.25" Y="4" Width="3" />
+    <Members>
+      <Field Name="_context" Hidden="true" />
+      <Field Name="_isConfirmationPasswordInvalid" Hidden="true" />
+      <Field Name="_isPasswordInvalid" Hidden="true" />
+      <Field Name="_setPasswordCommand" Hidden="true" />
+      <Field Name="_user" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAAABAAAAAAAAAQAIAAAAoAAAAAAgABAAIA=</HashCode>
+      <FileName>ViewModel\NewPasswordViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MySchoolYear.ViewModel.RoomManagementViewModel">
+    <Position X="6.5" Y="9.75" Width="3" />
+    <Members>
+      <Field Name="_availableClasses" Hidden="true" />
+      <Field Name="_createNewRoomCommand" Hidden="true" />
+      <Field Name="_deleteRoomCommand" Hidden="true" />
+      <Field Name="_lessonsInSelectedRoom" Hidden="true" />
+      <Field Name="_previousRoomClass" Hidden="true" />
+      <Field Name="_refreshDataCommand" Hidden="true" />
+      <Field Name="_roomsTableData" Hidden="true" />
+      <Field Name="_schoolData" Hidden="true" />
+      <Field Name="_selectedClass" Hidden="true" />
+      <Field Name="_selectedRoom" Hidden="true" />
+      <Field Name="_selectedRoomName" Hidden="true" />
+      <Field Name="_updateRoomCommand" Hidden="true" />
+      <Field Name="NO_ASSIGNED_CLASS" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Class Name="MySchoolYear.ViewModel.RoomManagementViewModel.RoomData" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>ViewModel\RoomManagementViewModel.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="MySchoolYear.ViewModel.RoomManagementViewModel.LessonsInRoom" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>ViewModel\RoomManagementViewModel.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <InheritanceLine Type="MySchoolYear.ViewModel.Utilities.BaseViewModel" ManuallyRouted="true" FixedToPoint="true">
+      <Path>
+        <Point X="23.5" Y="3.334" />
+        <Point X="23.5" Y="9.375" />
+        <Point X="7.688" Y="9.375" />
+        <Point X="7.688" Y="9.75" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>EAAA2AAAgCAIjwgAACBAAAMAAAAgHACAgAAAABYAAAU=</HashCode>
+      <FileName>ViewModel\RoomManagementViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MySchoolYear.ViewModel.SchoolInfoViewModel">
+    <Position X="37" Y="22.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>QAEQQAAAACAAAQAAAAAAAAACAAAAACAQAAAAAAIAAgA=</HashCode>
+      <FileName>ViewModel\SchoolInfoViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MySchoolYear.ViewModel.SchoolManagementViewModel">
+    <Position X="25.75" Y="22.5" Width="3" />
+    <Members>
+      <Field Name="_chooseImageCommand" Hidden="true" />
+      <Field Name="_prepareNewYearCommand" Hidden="true" />
+      <Field Name="_refreshDataCommand" Hidden="true" />
+      <Field Name="_saveChangesCommand" Hidden="true" />
+      <Field Name="_schoolDescription" Hidden="true" />
+      <Field Name="_schoolLogo" Hidden="true" />
+      <Field Name="_schoolName" Hidden="true" />
+    </Members>
+    <InheritanceLine Type="MySchoolYear.ViewModel.Utilities.BaseViewModel" ManuallyRouted="true">
+      <Path>
+        <Point X="23.5" Y="3.333" />
+        <Point X="23.5" Y="22.156" />
+        <Point X="27.25" Y="22.156" />
+        <Point X="27.25" Y="22.5" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>wAAAQQBAgCAAQWAAIAAABACBAAAACCAAAAAIAAIAAAA=</HashCode>
+      <FileName>ViewModel\SchoolManagementViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MySchoolYear.ViewModel.StudentGradesViewModel">
+    <Position X="10.25" Y="22.5" Width="3" />
+    <Members>
+      <Field Name="_absences" Hidden="true" />
+      <Field Name="_appealGradeCommand" Hidden="true" />
+      <Field Name="_appealText" Hidden="true" />
+      <Field Name="_averageGrade" Hidden="true" />
+      <Field Name="_changeStudentCommand" Hidden="true" />
+      <Field Name="_currentStudent" Hidden="true" />
+      <Field Name="_grades" Hidden="true" />
+      <Field Name="_homeroomTeacher" Hidden="true" />
+      <Field Name="_selectedGrade" Hidden="true" />
+      <Field Name="_students" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Struct Name="MySchoolYear.ViewModel.StudentGradesViewModel.GradeData" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>ViewModel\StudentGradesViewModel.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>CAIAQEIAlGAAAQAAAAgIgAAEAAAIgoAAAIIAAgMAAAQ=</HashCode>
+      <FileName>ViewModel\StudentGradesViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MySchoolYear.ViewModel.UserCreationViewModel">
+    <Position X="10.25" Y="9.75" Width="3.75" />
+    <Members>
+      <Field Name="_isNewParent" Hidden="true" />
+      <Field Name="_isNewSecretary" Hidden="true" />
+      <Field Name="_isNewStudent" Hidden="true" />
+      <Field Name="_isNewTeacher" Hidden="true" />
+      <Field Name="_refreshDataCommand" Hidden="true" />
+      <Field Name="_registerUserCommand" Hidden="true" />
+      <Field Name="FIELD_NOT_SET" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>GgAAQEIAgCAEgUEACQAgAAQAAQBgAAAAgIMYICJAoA0=</HashCode>
+      <FileName>ViewModel\UserCreationViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MySchoolYear.ViewModel.UserUpdateViewModel">
+    <Position X="19.5" Y="9.75" Width="3" />
+    <Members>
+      <Field Name="_deleteUserCommand" Hidden="true" />
+      <Field Name="_isParent" Hidden="true" />
+      <Field Name="_isPrincipal" Hidden="true" />
+      <Field Name="_isSecretary" Hidden="true" />
+      <Field Name="_isStudent" Hidden="true" />
+      <Field Name="_isTeacher" Hidden="true" />
+      <Field Name="_refreshDataCommand" Hidden="true" />
+      <Field Name="_schoolData" Hidden="true" />
+      <Field Name="_selectedClass" Hidden="true" />
+      <Field Name="_selectedCourse1" Hidden="true" />
+      <Field Name="_selectedCourse2" Hidden="true" />
+      <Field Name="_selectedCourse3" Hidden="true" />
+      <Field Name="_selectedCourse4" Hidden="true" />
+      <Field Name="_selectedHomeroomClass" Hidden="true" />
+      <Field Name="_selectedParent" Hidden="true" />
+      <Field Name="_selectedStudent" Hidden="true" />
+      <Field Name="_selectedUser" Hidden="true" />
+      <Field Name="_selectedUserType" Hidden="true" />
+      <Field Name="_updateUserCommand" Hidden="true" />
+      <Field Name="_userBirthdate" Hidden="true" />
+      <Field Name="_userEmail" Hidden="true" />
+      <Field Name="_userPhone" Hidden="true" />
+      <Field Name="FIELD_NOT_SET" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>CiBIygIAi2AUgUAEAAAgCgUBnQKQJAAIgLEIIAZAIAE=</HashCode>
+      <FileName>ViewModel\UserUpdateViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MySchoolYear.ViewModel.WeeklyScheduleViewModel">
+    <Position X="21.75" Y="22.5" Width="3" />
+    <Members>
+      <Field Name="_availableSchedules" Hidden="true" />
+      <Field Name="_schedule" Hidden="true" />
+      <Field Name="_selectedSchedule" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Class Name="MySchoolYear.ViewModel.WeeklyScheduleViewModel.LessonData" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>ViewModel\WeeklyScheduleViewModel.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="MySchoolYear.ViewModel.WeeklyScheduleViewModel.ScheduleData" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>ViewModel\WeeklyScheduleViewModel.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <InheritanceLine Type="MySchoolYear.ViewModel.Utilities.BaseViewModel" FixedToPoint="true">
+      <Path>
+        <Point X="23.5" Y="3.334" />
+        <Point X="23.5" Y="22.125" />
+        <Point X="23.25" Y="22.125" />
+        <Point X="23.25" Y="22.5" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AABAQgAAACBABQAAAAAAEAAAAEAAAAAgBCBAAAIAAAA=</HashCode>
+      <FileName>ViewModel\WeeklyScheduleViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Struct Name="MySchoolYear.ViewModel.Utilities.ValidityResult">
+    <Position X="26.75" Y="0.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>ViewModel\Utilities\ValidityResult.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Interface Name="MySchoolYear.ViewModel.Utilities.IMessageBoxService">
+    <Position X="17.25" Y="1.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModel\Utilities\IMessageBoxService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="MySchoolYear.ViewModel.Utilities.IScreenViewModel">
+    <Position X="31.5" Y="5" Width="2.5" />
+    <Compartments>
+      <Compartment Name="Properties" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAACAAAQAAAAAAAAAAAAAAAAAAAAAAAAIAAAA=</HashCode>
+      <FileName>ViewModel\Utilities\IScreenViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="MySchoolYear.ViewModel.Utilities.MessageType" Collapsed="true">
+    <Position X="26.25" Y="3.25" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAAAACAAAAAAAAAAAACAAAAAAAAAA=</HashCode>
+      <FileName>ViewModel\Utilities\IMessageBoxService.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="MySchoolYear.ViewModel.Utilities.MessagePurpose" Collapsed="true">
+    <Position X="26.25" Y="2.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABgAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModel\Utilities\IMessageBoxService.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

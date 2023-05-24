@@ -1,0 +1,49 @@
+﻿<UserControl x:Class="MySchoolYear.View.CalenderView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:local="clr-namespace:MySchoolYear.View"
+             xmlns:Jarloo="clr-namespace:Jarloo.Calendar;assembly=Jarloo.Calendar"
+             mc:Ignorable="d" 
+             x:Name="ThisCalenderView"
+             d:DesignHeight="560" d:DesignWidth="650"
+             Background = "{StaticResource WindowBackgroundBrush}"
+             >
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction
+                Command="{Binding ElementName=ThisCalenderView, Path=DataContext.UpdateCalenderCommand}" 
+                CommandParameter="{Binding ElementName=Calendar}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    
+    <Grid>        
+        <TextBlock DockPanel.Dock="Top" HorizontalAlignment="Center" Text="{Binding ScreenName}" Style="{StaticResource MainTitleText}"/>
+        
+        <ComboBox HorizontalAlignment="Center" Height="34" Margin="0,35,0,0" VerticalAlignment="Top" Width="152" FontSize="18.667" 
+                  ItemsSource="{Binding Path=Months, Mode=OneWay}" SelectedValue="{Binding Path=SelectedMonth, Mode=TwoWay}">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="SelectionChanged">
+                    <i:InvokeCommandAction Command="{Binding UpdateCalenderCommand}" 
+                                           CommandParameter="{Binding ElementName=Calendar}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </ComboBox>
+        <DockPanel Margin="0,50,0,0" FlowDirection="LeftToRight">
+            <StackPanel DockPanel.Dock="Right" MaxWidth="100">
+                <TextBlock Text="פרטי אירוע:" Style="{StaticResource SecondaryTitleText}" Margin="0,50,0,0"/>
+                <ComboBox ItemsSource="{Binding SelectedDayEvents}" DisplayMemberPath="name" SelectedValue="{Binding SelectedEvent}"/>
+                <Label Content="{Binding Path=SelectedEvent.Class.className}" ContentStringFormat="כיתה: {0}"/>
+                <TextBlock Text="{Binding SelectedEvent.location}" TextWrapping="Wrap" Style="{StaticResource BasicText}"/>
+                <TextBlock Text="{Binding SelectedEvent.eventDate}" TextWrapping="Wrap" Style="{StaticResource BasicText}"/>
+                <TextBlock Text="{Binding SelectedEvent.description}" TextWrapping="Wrap" Style="{StaticResource BasicText}" Margin="0,5,0,0"/>
+            </StackPanel>
+            
+            <Jarloo:Calendar x:Name="Calendar" DockPanel.Dock="Left" 
+                             SelectedDayCommand="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, 
+                                                          Path=DataContext.UpdateSelectedDayCommand}"/>
+        </DockPanel>
+    </Grid>
+</UserControl>

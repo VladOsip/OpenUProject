@@ -1,0 +1,123 @@
+﻿<UserControl x:Class="MySchoolYear.View.WeeklyScheduleView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MySchoolYear.View"
+             xmlns:dataGrid2D="http://gu.se/DataGrid2D"
+             mc:Ignorable="d" 
+             d:DesignHeight="560" d:DesignWidth="650"
+             Background = "{StaticResource WindowBackgroundBrush}">
+    <UserControl.Resources>
+        <Style x:Key="ScheduleCellStyle" TargetType="DataGridCell">
+            <Setter Property="Background" Value="Wheat"/>
+        </Style>
+    </UserControl.Resources>
+    <StackPanel>
+        <DockPanel>
+            <TextBlock HorizontalAlignment="Center" Text="{Binding ScreenName}" Style="{StaticResource MainTitleText}" Margin="100,0,0,0"/>
+
+            <ComboBox ItemsSource="{Binding Path=AvailableSchedules}" SelectedValue="{Binding Path=SelectedSchedule}" Width="150" 
+                  IsEnabled="{Binding Path=CanViewDifferentSchedules}" Margin="50,0,0,0">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Path=Name}" HorizontalAlignment="Center"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+        </DockPanel>
+        <Border BorderBrush="Black" BorderThickness="2" Margin="3,3,3,3">
+            <DataGrid AutoGenerateColumns="False" dataGrid2D:ItemsSource.Array2DTransposed="{Binding Schedule}" CellStyle="{StaticResource ScheduleCellStyle}" 
+                      IsReadOnly="True" CanUserResizeColumns="False" CanUserSortColumns="False" IsHitTestVisible="False" 
+                      ScrollViewer.VerticalScrollBarVisibility="Hidden" RowHeaderWidth="0" 
+                      FlowDirection="RightToLeft" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" >
+                <DataGrid.Columns>                    
+                    <DataGridTemplateColumn Header="ראשון" HeaderStyle="{StaticResource ColumnHeaderMainStyle}" Width="*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock Text="{Binding C0.CourseName}" FontWeight="Bold" HorizontalAlignment="Center"/>
+                                    <TextBlock Text="{Binding C0.TeacherName}" FontSize="12" HorizontalAlignment="Center"/>
+                                    <DockPanel>
+                                        <TextBlock Text="{Binding C0.ClassName}" FontSize="12" DockPanel.Dock="Right"/>
+                                        <TextBlock Text="{Binding C0.RoomName}" FontSize="12" DockPanel.Dock="Left"/>
+                                    </DockPanel>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="שני" HeaderStyle="{StaticResource ColumnHeaderMainStyle}" Width="*" >
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock Text="{Binding C1.CourseName}" FontWeight="Bold" HorizontalAlignment="Center"/>
+                                    <TextBlock Text="{Binding C1.TeacherName}" FontSize="12" HorizontalAlignment="Center"/>
+                                    <DockPanel>
+                                        <TextBlock Text="{Binding C1.ClassName}" FontSize="12" DockPanel.Dock="Right"/>
+                                        <TextBlock Text="{Binding C1.RoomName}" FontSize="12" DockPanel.Dock="Left"/>
+                                    </DockPanel>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="שלישי" HeaderStyle="{StaticResource ColumnHeaderMainStyle}" Width="*" >
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock Text="{Binding C2.CourseName}" FontWeight="Bold" HorizontalAlignment="Center"/>
+                                    <TextBlock Text="{Binding C2.TeacherName}" FontSize="12" HorizontalAlignment="Center"/>
+                                    <DockPanel>
+                                        <TextBlock Text="{Binding C2.ClassName}" FontSize="12" DockPanel.Dock="Right"/>
+                                        <TextBlock Text="{Binding C2.RoomName}" FontSize="12" DockPanel.Dock="Left"/>
+                                    </DockPanel>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="רביעי" HeaderStyle="{StaticResource ColumnHeaderMainStyle}" Width="*" >
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock Text="{Binding C3.CourseName}" FontWeight="Bold" HorizontalAlignment="Center"/>
+                                    <TextBlock Text="{Binding C3.TeacherName}" FontSize="12" HorizontalAlignment="Center"/>
+                                    <DockPanel>
+                                        <TextBlock Text="{Binding C3.ClassName}" FontSize="12" DockPanel.Dock="Right"/>
+                                        <TextBlock Text="{Binding C3.RoomName}" FontSize="12" DockPanel.Dock="Left"/>
+                                    </DockPanel>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="חמישי" HeaderStyle="{StaticResource ColumnHeaderMainStyle}" Width="*" >
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock Text="{Binding C4.CourseName}" FontWeight="Bold" HorizontalAlignment="Center"/>
+                                    <TextBlock Text="{Binding C4.TeacherName}" FontSize="12" HorizontalAlignment="Center"/>
+                                    <DockPanel>
+                                        <TextBlock Text="{Binding C4.ClassName}" FontSize="12" DockPanel.Dock="Right"/>
+                                        <TextBlock Text="{Binding C4.RoomName}" FontSize="12" DockPanel.Dock="Left"/>
+                                    </DockPanel>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="שישי" HeaderStyle="{StaticResource ColumnHeaderMainStyle}" Width="*" >
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock Text="{Binding C5.CourseName}" FontWeight="Bold" HorizontalAlignment="Center"/>
+                                    <TextBlock Text="{Binding C5.TeacherName}" FontSize="12" HorizontalAlignment="Center"/>
+                                    <DockPanel>
+                                        <TextBlock Text="{Binding C5.ClassName}" FontSize="12" DockPanel.Dock="Right"/>
+                                        <TextBlock Text="{Binding C5.RoomName}" FontSize="12" DockPanel.Dock="Left"/>
+                                    </DockPanel>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Border>
+    </StackPanel>
+</UserControl>

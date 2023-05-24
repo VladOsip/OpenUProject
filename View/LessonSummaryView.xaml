@@ -1,0 +1,80 @@
+﻿<UserControl x:Class="MySchoolYear.View.LessonSummaryView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MySchoolYear.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="560" d:DesignWidth="650"
+             Background = "{StaticResource WindowBackgroundBrush}">
+    <StackPanel>
+        <TextBlock Text="{Binding ScreenName}" HorizontalAlignment="Center" Style="{StaticResource MainTitleText}"/>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.3*"/>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.Resources >
+                <Style TargetType="Border" >
+                    <Setter Property="Padding" Value="10,10,10,5" />
+                </Style>
+            </Grid.Resources>
+
+            <Border Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" >
+                <TextBlock Text="מקצוע:" Style="{StaticResource SecondaryTitleText}"/>
+            </Border>
+            <Border Grid.Row="0" Grid.Column="1">
+                <ComboBox ItemsSource="{Binding Path=Courses, Mode=TwoWay}" Width="200"
+                              SelectedValuePath="Key" DisplayMemberPath="Value" SelectedValue="{Binding Path=SelectedCourse, Mode=TwoWay}"/>
+            </Border>
+
+            <Border Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center">
+                <TextBlock Text="כיתה:" Style="{StaticResource SecondaryTitleText}"/>
+            </Border>
+            <Border Grid.Row="1" Grid.Column="1" >
+                <ComboBox ItemsSource="{Binding Path=Classes, Mode=TwoWay}" Width="200"
+                              SelectedValuePath="Key" DisplayMemberPath="Value" SelectedValue="{Binding Path=SelectedClass, Mode=TwoWay}"/>
+            </Border>
+
+            <Border Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center">
+                <TextBlock Text="תאריך:" Style="{StaticResource SecondaryTitleText}"/>
+            </Border>
+            <Border Grid.Row="2" Grid.Column="1">
+                <DatePicker Width="200" SelectedDate="{Binding SelectedDate}"/>
+            </Border>
+        </Grid>
+
+        <DataGrid ItemsSource="{Binding Path=StudentsInLesson}" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False"
+                  ScrollViewer.HorizontalScrollBarVisibility="Hidden" FlowDirection="RightToLeft"
+                  HorizontalAlignment="Center" HorizontalContentAlignment="Center" RowHeaderWidth ="0" Margin="0,30,0,0" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="תלמיד" Binding="{Binding Path=Name}" HeaderStyle="{StaticResource ColumnHeaderMainStyle}" 
+                                    Width="90" IsReadOnly="True">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style>
+                            <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                
+                <DataGridCheckBoxColumn Header="חסר" Binding="{Binding Path=WasMissing}" Width="70" HeaderStyle="{StaticResource ColumnHeaderMainStyle}"/>
+
+                <DataGridTextColumn Header="הערות" Binding="{Binding Path=Notes}" Width="300" HeaderStyle="{StaticResource ColumnHeaderMainStyle}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style>
+                            <Setter Property="TextBox.MaxLength" Value="250"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Button Content="הזן" Height="40" Width="200" IsDefault="True" Command="{Binding Path=ReportLessonCommand}" 
+                Margin="0,200,0,50" />
+    </StackPanel>
+</UserControl>

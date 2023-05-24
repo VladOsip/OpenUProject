@@ -1,0 +1,148 @@
+﻿<UserControl x:Class="MySchoolYear.View.EventManagementView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:local="clr-namespace:MySchoolYear.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="560" d:DesignWidth="650"
+             Background = "{StaticResource WindowBackgroundBrush}">
+    <DockPanel>
+        <TextBlock DockPanel.Dock="Top" Text="{Binding ScreenName}" HorizontalAlignment="Center" Style="{StaticResource MainTitleText}"/>
+
+        <StackPanel DockPanel.Dock="Right">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <RadioButton GroupName="SearchCategory" Content="לתלמיד" IsChecked="{Binding SearchingStudentEvents}" />
+                <RadioButton GroupName="SearchCategory" Content="לכיתה" IsChecked="{Binding SearchingClassEvents}" />
+                <RadioButton GroupName="SearchCategory" Content="לכולם" IsChecked="{Binding SearchingSchoolEvents}" />
+            </StackPanel>
+
+            <ComboBox ItemsSource="{Binding Path=AvailableSearchChoices, Mode=TwoWay}"
+                              SelectedValuePath="Key" DisplayMemberPath="Value" SelectedValue="{Binding Path=SelectedSearchChoice, Mode=TwoWay}" Margin="0,5,0,0"/>
+
+            <DataGrid DockPanel.Dock="Right" ItemsSource="{Binding Path=EventsTableData}" SelectionMode="Single" SelectedItem="{Binding Path=SelectedEvent}"
+                  ScrollViewer.HorizontalScrollBarVisibility="Hidden" AutoGenerateColumns="False" IsReadOnly="True" FlowDirection="RightToLeft"
+                  VerticalAlignment="Top" HorizontalContentAlignment="Center" RowHeaderWidth ="0" Margin="0,5,0,0" >
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="סוג" Binding="{Binding Path=EventName}" Width="70" HeaderStyle="{StaticResource ColumnHeaderMainStyle}">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style>
+                                <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+
+                    <DataGridTextColumn Header="מיקום" Binding="{Binding Path=EventLocation}" Width="90" HeaderStyle="{StaticResource ColumnHeaderMainStyle}">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style>
+                                <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+
+                    <DataGridTextColumn Header="תאריך" Binding="{Binding Path=EventDatetime}" Width="70" HeaderStyle="{StaticResource ColumnHeaderMainStyle}">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style>
+                                <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+
+                    <DataGridTextColumn Header="מי שלח" Binding="{Binding Path=SubmitterName}" Width="90" HeaderStyle="{StaticResource ColumnHeaderMainStyle}">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style>
+                                <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+
+        <StackPanel DockPanel.Dock="Left">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.45*"/>
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.Resources >
+                    <Style TargetType="Border" >
+                        <Setter Property="Padding" Value="10,10,10,5" />
+                    </Style>
+                </Grid.Resources>
+
+                <Border Grid.Row="0" Grid.Column="0" >
+                    <TextBlock Text="למי האירוע:" Style="{StaticResource BasicText}"/>
+                </Border>
+                <Border Grid.Row="0" Grid.Column="1">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <RadioButton GroupName="TargetCategory" Content="לתלמיד" IsChecked="{Binding SendingToStudent}" />
+                        <RadioButton GroupName="TargetCategory" Content="לכיתה" IsChecked="{Binding SendingToClass}" />
+                        <RadioButton GroupName="TargetCategory" Content="לכולם" IsChecked="{Binding SendingToEveryone}" IsEnabled="{Binding CanSendToEveryone}"/>
+                    </StackPanel>
+                </Border>
+
+                <Border Grid.Row="1" Grid.Column="1">
+                    <ComboBox ItemsSource="{Binding Path=Recipients, Mode=TwoWay}"
+                              SelectedValuePath="Key" DisplayMemberPath="Value" SelectedValue="{Binding Path=SelectedRecipient, Mode=TwoWay}"/>
+                </Border>
+
+                <Border Grid.Row="2" Grid.Column="0" >
+                    <TextBlock Text="תאריך:" Style="{StaticResource BasicText}"/>
+                </Border>
+                <Border Grid.Row="2" Grid.Column="1">
+                    <xctk:DateTimePicker Width="200" Value="{Binding EventDatetime}"/>
+                </Border>
+
+                <Border Grid.Row="3" Grid.Column="0" >
+                    <TextBlock Text="מיקום:" Style="{StaticResource BasicText}"/>
+                </Border>
+                <Border Grid.Row="3" Grid.Column="1">
+                    <ComboBox ItemsSource="{Binding Path=PossibleLocations, Mode=TwoWay}" Text="{Binding Path=EventLocation, Mode=TwoWay}" 
+                          IsEditable="True" Width="200"/>
+                </Border>
+
+                <Border Grid.Row="4" Grid.Column="0">
+                    <Separator/>
+                </Border>
+                <Border Grid.Row="4" Grid.Column="1">
+                    <Separator/>
+                </Border>
+
+                <Border Grid.Row="5" Grid.Column="0" >
+                    <TextBlock Text="סוג האירוע:" Style="{StaticResource BasicText}"/>
+                </Border>
+                <Border Grid.Row="5" Grid.Column="1">
+                    <ComboBox ItemsSource="{Binding Path=PossibleEvents, Mode=TwoWay}" Text="{Binding Path=EventName, Mode=TwoWay}" 
+                          IsEditable="True" Width="200"/>
+                </Border>
+
+                <Border Grid.Row="6" Grid.Column="0" >
+                    <TextBlock Text="מידע" Style="{StaticResource BasicText}"/>
+                </Border>
+                <Border Grid.Row="6" Grid.Column="1">
+                    <TextBox TextWrapping="Wrap" Height="200" Width="200" MaxLength="300" Text="{Binding EventText}"/>
+                </Border>
+            </Grid>
+            
+            <StackPanel Orientation="Horizontal" Margin="0,5">
+                <Button Content="מחק" Background="{StaticResource DangerousActionColorBrush}" Command="{Binding DeleteEventCommand}" Margin="20,0,0,0" />
+                <Button Content="עדכן" Command="{Binding UpdateEventCommand}" Margin="40,3,0,0" />
+            </StackPanel>
+            <Button Content="צור אירוע חדש" Command="{Binding SendEventCommand}" Margin="0,5"/>
+        </StackPanel>
+    </DockPanel>
+</UserControl>

@@ -1,0 +1,73 @@
+﻿<UserControl x:Class="MySchoolYear.View.CreateMessageView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MySchoolYear.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="560" d:DesignWidth="650"
+             Background = "{StaticResource WindowBackgroundBrush}">
+    <StackPanel>
+        <TextBlock Text="{Binding ScreenName}" HorizontalAlignment="Center" Style="{StaticResource MainTitleText}"/>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.3*"/>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.Resources >
+                <Style TargetType="Border" >
+                    <Setter Property="Padding" Value="10,10,10,5" />
+                </Style>
+            </Grid.Resources>
+            
+            <Border Grid.Row="0" Grid.Column="0" >
+                <TextBlock Text="למי לשלוח:" Style="{StaticResource SecondaryTitleText}"/>
+            </Border>
+            <Border Grid.Row="0" Grid.Column="1">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <RadioButton GroupName="TargetCategory" Content="לתלמיד" IsChecked="{Binding SendingToStudent}" />
+                    <RadioButton GroupName="TargetCategory" Content="למורה" IsChecked="{Binding SendingToTeacher}"/>
+                    <RadioButton GroupName="TargetCategory" Content="להנהלה" IsChecked="{Binding SendingToManagement}"/>
+                    <RadioButton GroupName="TargetCategory" Content="להורה" IsChecked="{Binding SendingToParent}"/>
+                    <RadioButton GroupName="TargetCategory" Content="לכיתה" IsChecked="{Binding SendingToClass}" IsEnabled="{Binding CanSendToClass}" />
+                    <RadioButton GroupName="TargetCategory" Content="לכולם" IsChecked="{Binding SendingToEveryone}" IsEnabled="{Binding CanSendToEveryone}"/>
+                </StackPanel>
+            </Border>
+
+            <Border Grid.Row="1" Grid.Column="1">
+                <ComboBox ItemsSource="{Binding Path=Recipients, Mode=TwoWay}" Width="200"
+                              SelectedValuePath="Key" DisplayMemberPath="Value" SelectedValue="{Binding Path=SelectedRecipient, Mode=TwoWay}"/>
+            </Border>
+
+            <Border Grid.Row="2" Grid.Column="0">
+                <Separator/>
+            </Border>
+            <Border Grid.Row="2" Grid.Column="1">
+                <Separator/>
+            </Border>
+
+            <Border Grid.Row="3" Grid.Column="0" >
+                <TextBlock Text="כותרת:" Style="{StaticResource SecondaryTitleText}"/>
+            </Border>
+            <Border Grid.Row="3" Grid.Column="1">
+                <TextBox TextWrapping="Wrap" Width="300" MaxLength="30" Text="{Binding MessageTitle}"/>
+            </Border>
+
+            <Border Grid.Row="4" Grid.Column="0" >
+                <TextBlock Text="תוכן ההודעה:" Style="{StaticResource SecondaryTitleText}"/>
+            </Border>
+            <Border Grid.Row="4" Grid.Column="1">
+                <TextBox TextWrapping="Wrap" Height="200" Width="300" MaxLength="300" Text="{Binding MessageText}"/>
+            </Border>
+
+        </Grid>
+        <Button Content="שלח" Height="40" Width="200" IsDefault="True" Command="{Binding Path=SendMessageCommand}" Margin="0,50,0,50" />
+    </StackPanel>
+</UserControl>

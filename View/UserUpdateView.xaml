@@ -1,0 +1,166 @@
+﻿<UserControl x:Class="MySchoolYear.View.UserUpdateView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MySchoolYear.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="560" d:DesignWidth="650"
+             Background = "{StaticResource WindowBackgroundBrush}">
+    <UserControl.Resources>
+        <Style TargetType="TextBlock" BasedOn="{StaticResource BasicText}"/>
+    </UserControl.Resources>
+    <StackPanel>
+        <TextBlock HorizontalAlignment="Center" Text="{Binding ScreenName}" Style="{StaticResource MainTitleText}"/>
+        <Grid Height="400" Width="635">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1.3*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0" HorizontalAlignment="Center" >
+                <Grid.Resources >
+                    <Style TargetType="Border" >
+                        <Setter Property="Padding" Value="0,30,0,20" />
+                    </Style>
+                </Grid.Resources>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1.75*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Border Grid.Row="0" Grid.Column="0">
+                    <TextBlock Text="סוג משתמש:" />
+                </Border>
+                <Border Grid.Row="0" Grid.Column="1">
+                    <ComboBox ItemsSource="{Binding Path=AvailableUserTypes}" SelectedValue="{Binding Path=SelectedUserType, Mode=TwoWay}"
+                              Width="165" Margin="5,0,0,0"/>
+                </Border>
+
+                <Border Grid.Row="1" Grid.Column="0">
+                    <TextBlock Text="בחר משתמש:" />
+                </Border>
+                <Border Grid.Row="1" Grid.Column="1">
+                    <ComboBox ItemsSource="{Binding Path=AvailableUsers}" SelectedValuePath="Key" DisplayMemberPath="Value" 
+                              SelectedValue="{Binding Path=SelectedUser, Mode=TwoWay}" 
+                              Width="165" Margin="5,0,0,0"/>
+                </Border>
+
+                <Border Grid.Row="2" Grid.Column="0">
+                    <TextBlock Text="טלפון:"/>
+                </Border>
+                <Border Grid.Row="2" Grid.Column="1">
+                    <TextBox Width="165" MaxLength="12" Text="{Binding Path=Phone}" 
+                         DataObject.Pasting="IsPhoneFieldPasteAllowed" PreviewTextInput="IsPhoneFieldPreviewAllowed" Height="Auto" Margin="5,0,0,0"/>
+                </Border>
+
+                <Border Grid.Row="3" Grid.Column="0">
+                    <TextBlock Text="מייל:"/>
+                </Border>
+                <Border Grid.Row="3" Grid.Column="1">
+                    <TextBox Width="165" MaxLength="50" Text="{Binding Path=Email}" Height="Auto" Margin="5,0,0,0" />
+                </Border>
+
+                <Border Grid.Row="4" Grid.Column="0">
+                    <TextBlock Text="יום הולדת:"/>
+                </Border>
+                <Border Grid.Row="4" Grid.Column="1">
+                    <DatePicker Width="165" Height="50" SelectedDate="{Binding Path=Birthdate}" Margin="5,0,0,0"/>
+                </Border>
+            </Grid>
+
+            <StackPanel Grid.Column="1" Margin="15,0,0,0">
+                <Grid Margin="0,50,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="2.25*"/>
+                    </Grid.ColumnDefinitions>
+                    <Border Grid.Row="0" Grid.Column="0">
+                        <TextBlock Text="סוג משתמש:"/>
+                    </Border>
+                    <Border Grid.Row="0" Grid.Column="1">
+                        <ListBox HorizontalContentAlignment="Center" Background="Transparent" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                            <ListBox.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <WrapPanel/>
+                                </ItemsPanelTemplate>
+                            </ListBox.ItemsPanel>
+                            <ListBoxItem>
+                                <CheckBox IsChecked="{Binding Path=IsStudent}" Content="תלמיד"/>
+                            </ListBoxItem>
+                            <ListBoxItem>
+                                <CheckBox IsChecked="{Binding Path=IsTeacher}" Content="מורה"/>
+                            </ListBoxItem>
+                            <ListBoxItem>
+                                <CheckBox IsChecked="{Binding Path=IsParent}" Content="הורה"/>
+                            </ListBoxItem>
+                            <ListBoxItem>
+                                <CheckBox IsChecked="{Binding Path=IsSecretary}" Content="מזכירה" 
+                                          Visibility="{Binding Path=CanEditManagement, Converter={StaticResource BoolToVis}}"/>
+                            </ListBoxItem>
+                            <ListBoxItem>
+                                <CheckBox IsChecked="{Binding Path=IsPrincipal}" Content="מנהל" 
+                                          Visibility="{Binding Path=CanEditManagement, Converter={StaticResource BoolToVis}}"/>
+                            </ListBoxItem>
+                        </ListBox>
+                    </Border>
+                </Grid>
+                <StackPanel Orientation="Horizontal" Margin="0,20,0,0" IsEnabled="{Binding Path=IsStudent}">
+                    <TextBlock Text="כיתה:" />
+                    <ComboBox ItemsSource="{Binding Path=AvailableClasses}" SelectedValuePath="Key" DisplayMemberPath="Value" 
+                              SelectedValue="{Binding Path=SelectedClass, Mode=TwoWay}" 
+                              Width="75" Margin="5,0,0,0" Style="{StaticResource ComboBoxCleanWhenDisabled}"/>
+
+                    <TextBlock Text="הורה(אופציונלי):" Margin="20,0,0,0" />
+                    <ComboBox ItemsSource="{Binding Path=AvailableParents}" SelectedValuePath="Key" DisplayMemberPath="Value" 
+                              SelectedValue="{Binding Path=SelectedParent, Mode=TwoWay}"
+                              Width="75" Margin="5,0,0,0" Style="{StaticResource ComboBoxCleanWhenDisabled}"/>
+                </StackPanel>
+                <Separator BorderBrush="Gray" Width="320" Margin="0,10,0,0" BorderThickness="1" />
+
+                <StackPanel Orientation="Horizontal" Margin="0,10,0,0" IsEnabled="{Binding Path=IsParent}">
+                    <TextBlock Text="ילד/ילדה:" />
+                    <ComboBox ItemsSource="{Binding Path=AvailableStudents}" SelectedValuePath="Key" DisplayMemberPath="Value" 
+                              SelectedValue="{Binding Path=SelectedStudent, Mode=TwoWay}"
+                              Width="100" Margin="5,0,0,0" Style="{StaticResource ComboBoxCleanWhenDisabled}"/>
+                </StackPanel>
+                <Separator BorderBrush="Gray" Width="320" Margin="0,10,0,0" BorderThickness="1" />
+
+                <TextBlock Text="מקצועות:" HorizontalAlignment="Center" Margin="0,5"/>
+                <WrapPanel Orientation="Horizontal" Width="250" IsEnabled="{Binding Path=IsTeacher}">
+                    <ComboBox ItemsSource="{Binding Path=AvailableCoursesMustChoose}" SelectedValuePath="Key" DisplayMemberPath="Value" 
+                              SelectedValue="{Binding Path=SelectedCourse1, Mode=TwoWay}"
+                              Width="100" Style="{StaticResource ComboBoxCleanWhenDisabled}"/>
+                    <ComboBox ItemsSource="{Binding Path=AvailableCourses}" SelectedValuePath="Key" DisplayMemberPath="Value" 
+                              SelectedValue="{Binding Path=SelectedCourse2, Mode=TwoWay}"
+                              Width="100" Margin="50,0,0,0" Style="{StaticResource ComboBoxCleanWhenDisabled}"/>
+                    <ComboBox ItemsSource="{Binding Path=AvailableCourses}" SelectedValuePath="Key" DisplayMemberPath="Value" 
+                              SelectedValue="{Binding Path=SelectedCourse3, Mode=TwoWay}"
+                              Width="100" Margin="0,10,0,0" Style="{StaticResource ComboBoxCleanWhenDisabled}"/>
+                    <ComboBox ItemsSource="{Binding Path=AvailableCourses}" SelectedValuePath="Key" DisplayMemberPath="Value" 
+                              SelectedValue="{Binding Path=SelectedCourse4, Mode=TwoWay}"
+                              Width="100" Margin="50,10,0,0" Style="{StaticResource ComboBoxCleanWhenDisabled}"/>
+                </WrapPanel>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0" IsEnabled="{Binding Path=IsTeacher}">
+                    <TextBlock Text="מחנך של כיתה:" />
+                    <ComboBox ItemsSource="{Binding Path=AvailableHomeroomClasses}" SelectedValuePath="Key" DisplayMemberPath="Value" 
+                              SelectedValue="{Binding Path=SelectedHomeroomClass, Mode=TwoWay}" 
+                              Width="75" Margin="5,0,0,0" Style="{StaticResource ComboBoxCleanWhenDisabled}"/>
+                </StackPanel>
+                <Separator BorderBrush="Gray" Width="320" Margin="0,10,0,0" BorderThickness="1" />
+                <Button Background="{StaticResource DangerousActionColorBrush}" Height="30" Width="150" Margin="0,20,0,0"
+                        Content="מחק משתמש" IsDefault="True" Command="{Binding Path=DeleteUserCommand}"/>
+            </StackPanel>
+        </Grid>
+
+        <Button Content="עדכן" Height="40" Width="200" IsDefault="True" Command="{Binding Path=UpdateUserCommand}" Margin="0,20,0,0" />
+    </StackPanel>
+</UserControl>

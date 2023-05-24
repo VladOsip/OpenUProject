@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29911.84
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MySchoolYear", "MySchoolYear.csproj", "{E6E94815-524E-47A2-A589-8CC994B73FCE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jarloo.Calendar", "Jarloo.Calendar\Jarloo.Calendar.csproj", "{31C3B4A7-504B-4EFF-BACC-C8F2FFE5AF6F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E6E94815-524E-47A2-A589-8CC994B73FCE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6E94815-524E-47A2-A589-8CC994B73FCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6E94815-524E-47A2-A589-8CC994B73FCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6E94815-524E-47A2-A589-8CC994B73FCE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{31C3B4A7-504B-4EFF-BACC-C8F2FFE5AF6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31C3B4A7-504B-4EFF-BACC-C8F2FFE5AF6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31C3B4A7-504B-4EFF-BACC-C8F2FFE5AF6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31C3B4A7-504B-4EFF-BACC-C8F2FFE5AF6F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7027561D-D79D-4FDD-BA24-6F4BC9258A40}
+	EndGlobalSection
+EndGlobal
